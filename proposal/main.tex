@@ -35,7 +35,7 @@ email}
 \IEEEauthorblockA{\textit{Universitas Gadjah Mada} \\
 \textit{Department of Computer Science and Electronics}\\
 Yogyakarta, Indonesia \\
-email}
+farreltsaqifanindyo@mail.ugm.ac.id}
 \and
 \IEEEauthorblockN{4\textsuperscript{th} Yohana Butar Butar}
 \text{24/546690/PA/23212}\\
@@ -53,7 +53,11 @@ This document is a model and instructions for \LaTeX.
 Please observe the conference page limits. 
 
 \subsection{Background}
-blabla
+The rapid growth of urban populations and the increasing number of motor vehicles have placed significant pressure on road infrastructure and traffic management systems. One of the most critical challenges in modern transportation is the high frequency of traffic light violations, which remain a leading cause of urban road accidents and congestion. Conventional methods of traffic enforcement, such as manual monitoring by officers or basic static camera systems, are often inefficient, labor-intensive, and prone to human error, making 24/7 surveillance difficult to maintain.
+
+To address these challenges, we are trying to automate the surveillance process using a video from CCTV by utilizing a method in Computer Vision and Artificial Intelligence. By implementing real-time object detection and tracking, specifically through models like YOLOv8 for vehicle identification and DeepSORT for trajectory tracking, it is now possible to automate the monitoring of traffic flow. Furthermore, integrating specialized color analysis using the HSV (Hue, Saturation, Value) model allows for high-precision detection of traffic light states under varying environmental lighting conditions.
+
+This project proposes an automated traffic violation detection system that synchronizes vehicle tracking with traffic signal states. By digitizing the enforcement process, this system aims to enhance road safety and reduce the workload on traffic authorities.
 \subsection{Problem Statement}
 blabka
 \subsection{Objective}
@@ -64,6 +68,13 @@ This study is limited to traffic signal violation detection using static CCTV fo
 \section{Literature Review}
 \subsection{Related Work}
 \subsection{HSV (Hue, Saturation, Value) Color Model}
+In the field of computer vision, selecting an appropriate color space is critical for the accuracy of object detection under varying environmental conditions. The HSV (Hue, Saturation, Value) color model is a cylindrical representation of colors that more closely aligns with human visual perception compared to the standard RGB model. While RGB defines colors as a combination of primary light sources, it is highly sensitive to changes in brightness, shadows, and external lighting.The HSV model decouples color information from intensity, using three distinct components:
+\begin{itemize}
+    \item Hue ($H$): Represents the dominant wavelength or the actual "color" (e.g., Red, Yellow, Green) expressed in degrees from $0^{\circ}$ to $360^{\circ}$.
+    \item Saturation ($S$): Indicates the vibrancy or purity of the color, ranging from $0$ to $100\%$.
+    \item Value ($V$): Represents the brightness or luminance of the color.
+\end{itemize}
+
 \subsection{Histogram of Oriented Gradients (HOG)}
 \subsection{Support Vector Machine (SVM)}
 \subsection{Simple Online and Realtime Tracking (SORT)}
@@ -75,13 +86,22 @@ This study is limited to traffic signal violation detection using static CCTV fo
 \subsection{Vehicle Detection using HOG-SVM}
 \subsection{Vehicle Tracking using SORT}
 \subsection{Traffic Light Detection using HSV}
+By utilizing the HSV color space, the proposed system can isolate the Hue component to identify traffic light states. This provides the algorithm with significant robustness against illumination variance, ensuring that the system can accurately distinguish between "Red" and "Green" signals regardless of whether the footage is captured during daylight or nighttime conditions.
 \subsection{Violation Detection}
 \subsection{Evaluation Metrics}
+To assess the performance of the proposed traffic violation detection system, several standard statistical metrics will be utilized. These metrics provide a quantitative measure of how well the YOLOv8 and DEEPSORT model detects objects.
 \subsubsection{Accuracy}
+The ratio of total correct predictions to the total number of test cases.
+$$Accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
 \subsubsection{Precision}
+Measures the proportion of predicted violations that were actually correct.
+$$\text{Precision} = \frac{TP}{TP + FP}$$
 \subsubsection{Recall}
+Measures the system's ability to capture all actual violations.
+$$Recall = \frac{TP}{TP + FN}$$
 \subsubsection{F1-Score}
-
+The harmonic mean of Precision and Recall.
+$$F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}$$
 \bibliography{references}  
 
 \end{document}
