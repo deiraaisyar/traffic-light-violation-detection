@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.8)  25 MAR 2026 22:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.8)  30 MAR 2026 18:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -229,9 +229,48 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+) (/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen175
+\captionmargin=\dimen176
+\caption@leftmargin=\dimen177
+\caption@rightmargin=\dimen178
+\caption@width=\dimen179
+\caption@indent=\dimen180
+\caption@parindent=\dimen181
+\caption@hangindent=\dimen182
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEtablestring \footnotesize \bgroup \par \centering \@IEEEtabletopskipstrut {\normalfont \footnotesize #1}\\{\normalfont \footnotesize \scshape #2}\par \addvspace {0.5\baselineskip }\egroup \@IEEEtablecaptionsepspace \else \@IEEEfigurecaptionsepspace \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspace \nobreakspace #2}\ifdim \wd \@tempboxa >\hsize \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspace \nobreakspace }\parbox [t]{\hsize }{\normalfont \footnotesize \noindent \unhbox \@tempboxa #2}\else \ifCLASSOPTIONconference \hbox to\hsize {\normalfont \footnotesize \hfil \box \@tempboxa \hfil }\else \hbox to\hsize {\normalfont \footnotesize \box \@tempboxa \hfil }\fi \fi \fi  on input line 1175.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count284
+\c@continuedfloat=\count285
+)
+\c@KVtest=\count286
+\sf@farskip=\skip56
+\sf@captopadj=\dimen183
+\sf@capskip=\skip57
+\sf@nearskip=\skip58
+\c@subfigure=\count287
+\c@subfigure@save=\count288
+\c@lofdepth=\count289
+\c@subtable=\count290
+\c@subtable@save=\count291
+\c@lotdepth=\count292
+\sf@top=\skip59
+\sf@bottom=\skip60
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count284
+\l__color_backend_stack_int=\count293
 \l__pdf_internal_box=\box55
 ) (./main.aux)
 \openout1 = `main.aux'.
@@ -254,16 +293,16 @@ LaTeX Font Info:    ... okay on input line 15.
 -- Lines per column: 56 (exact).
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count285
-\scratchdimen=\dimen175
+\scratchcounter=\count294
+\scratchdimen=\dimen184
 \scratchbox=\box56
-\nofMPsegments=\count286
-\nofMParguments=\count287
+\nofMPsegments=\count295
+\nofMParguments=\count296
 \everyMPshowfont=\toks24
-\MPscratchCnt=\count288
-\MPscratchDim=\dimen176
-\MPnumerator=\count289
-\makeMPintoPDFobject=\count290
+\MPscratchCnt=\count297
+\MPscratchDim=\dimen185
+\MPnumerator=\count298
+\makeMPintoPDFobject=\count299
 \everyMPtoPDFconversion=\toks25
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -271,6 +310,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Calculating math sizes for size <11> on input line 48.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 48.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -279,23 +321,54 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 48.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+]
+<figures/diagram_proposed_method.png, id=11, 5082.99pt x 1650.165pt>
+File: figures/diagram_proposed_method.png Graphic file (type png)
+<use figures/diagram_proposed_method.png>
+Package pdftex.def Info: figures/diagram_proposed_method.png  used on input line 89.
+(pdftex.def)             Requested size: 226.79846pt x 73.62473pt.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 96.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \vbox (badness 1708) has occurred while \output is active []
+<figures/frame_1.png, id=13, 1927.2pt x 1084.05pt>
+File: figures/frame_1.png Graphic file (type png)
+<use figures/frame_1.png>
+Package pdftex.def Info: figures/frame_1.png  used on input line 105.
+(pdftex.def)             Requested size: 113.39923pt x 63.78305pt.
 
- (./main.bbl
+Underfull \hbox (badness 3930) in paragraph at lines 105--105
+[]\OT1/ptm/m/n/8 (a) |Ex-am-ple frame from CCTV
+ []
 
-./main.bbl:23: LaTeX Error: Something's wrong--perhaps a missing \item.
+<figures/frame_2.png, id=14, 1927.2pt x 1084.05pt>
+File: figures/frame_2.png Graphic file (type png)
+<use figures/frame_2.png>
+Package pdftex.def Info: figures/frame_2.png  used on input line 110.
+(pdftex.def)             Requested size: 113.39923pt x 63.78305pt.
+<figures/diagram_preprocessing.png, id=15, 2477.255pt x 847.165pt>
+File: figures/diagram_preprocessing.png Graphic file (type png)
+<use figures/diagram_preprocessing.png>
+Package pdftex.def Info: figures/diagram_preprocessing.png  used on input line 122.
+(pdftex.def)             Requested size: 226.79846pt x 77.56007pt.
+<figures/traffic_light_roi.png, id=16, 882.29625pt x 351.3125pt>
+File: figures/traffic_light_roi.png Graphic file (type png)
+<use figures/traffic_light_roi.png>
+Package pdftex.def Info: figures/traffic_light_roi.png  used on input line 131.
+(pdftex.def)             Requested size: 226.79846pt x 90.30449pt.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.23 \end{thebibliography}
-                          
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-)
+[2 <./figures/diagram_proposed_method.png> <./figures/frame_1.png> <./figures/frame_2.png> <./figures/diagram_preprocessing.png>]
+<figures/violation_detection.png, id=24, 2027.575pt x 1055.945pt>
+File: figures/violation_detection.png Graphic file (type png)
+<use figures/violation_detection.png>
+Package pdftex.def Info: figures/violation_detection.png  used on input line 162.
+(pdftex.def)             Requested size: 226.79846pt x 118.10391pt.
+ (./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -307,28 +380,25 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}
-
-
-] (./main.aux)
+[3 <./figures/traffic_light_roi.png (PNG copy)> <./figures/violation_detection.png>] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4175 strings out of 474222
- 65134 string characters out of 5748734
- 1934975 words of memory out of 5000000
- 26396 multiletter control sequences out of 15000+600000
- 593342 words of font info for 108 fonts, out of 8000000 for 9000
+ 5781 strings out of 474222
+ 96156 string characters out of 5748734
+ 1939975 words of memory out of 5000000
+ 27984 multiletter control sequences out of 15000+600000
+ 597009 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,11n,65p,514b,334s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (1 page, 36829 bytes).
+ 69i,11n,79p,776b,388s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (3 pages, 11046804 bytes).
 PDF statistics:
- 19 PDF objects out of 1000 (max. 8388607)
- 11 compressed objects within 1 object stream
+ 62 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,13 +8,13 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
-\bibliographystyle{IEEEtran}
+\usepackage{subfig}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Traffic Signal Violation Detection at Simpang Gedongan Sleman Using HOG-SVM Classifier, HSV-Based Segmentation, and SORT}
+\title{Traffic Signal Violation Detection at Simpang Gedongan Sleman Using YOLOv8, HSV-Based Segmentation, and DEEPSORT}
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Deira Aisya Refani}
 \text{24/532821/PA/22539}\\
@@ -48,9 +48,7 @@ email}
 \maketitle
 
 
-\section{Introduction}
-This document is a model and instructions for \LaTeX.
-Please observe the conference page limits. 
+\section{Introduction} 
 
 \subsection{Background}
 The rapid growth of urban populations and the increasing number of motor vehicles have placed significant pressure on road infrastructure and traffic management systems. One of the most critical challenges in modern transportation is the high frequency of traffic light violations, which remain a leading cause of urban road accidents and congestion. Conventional methods of traffic enforcement, such as manual monitoring by officers or basic static camera systems, are often inefficient, labor-intensive, and prone to human error, making 24/7 surveillance difficult to maintain.
@@ -81,13 +79,91 @@ In the field of computer vision, selecting an appropriate color space is critica
 
 \section{Methodology}
 \subsection{Proposed Method} 
+This study proposes a computer vision–based approach for detecting traffic signal violations using CCTV at Simpang Gedongan Sleman footage from a static camera. The system is designed as a multi-stage pipeline consisting of preprocessing, vehicle detection, object tracking, traffic light recognition, and violation analysis (Fig.~\ref{fig:proposed_method}). To improve efficiency and reduce noise, a polygon-based Region of Interest (ROI) is defined to limit the analysis to the roadway area, excluding irrelevant regions such as sidewalks and surrounding infrastructure.
+
+Within this ROI, vehicle detection is performed using YOLOv8, focusing only on vehicles located inside the polygonal area. The detected vehicles are then processed using an object tracking method to assign unique identities and maintain their trajectories across consecutive frames. This tracking process enables consistent monitoring of each vehicle’s movement over time, which is essential for determining whether a vehicle has crossed a predefined boundary.
+
+In parallel, the system identifies the traffic light state using a color-based approach, which is used as a condition in the violation detection process. A virtual stop line is defined within the ROI to represent the legal stopping boundary. A violation is detected when a tracked vehicle crosses this line while the traffic light is in a red state. The system then generates an output in the form of visual annotations and alert messages, providing a structured and automated method for traffic violation detection. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/diagram_proposed_method.png}
+    \caption{Proposed Method for Traffic Signal Violation Detection}
+    \label{fig:proposed_method}
+\end{figure}
 \subsection{Dataset}
+The dataset used in this study is obtained from publicly accessible CCTV footage provided by the Yogyakarta Provincial Government through the official platform. The data is specifically collected from the surveillance camera located at the Gedongan intersection in Sleman (Simpang Gedongan Sleman).
+
+The original video frames have a resolution of 1920 × 1080 pixels, capturing real-world traffic conditions from a fixed viewpoint. The dataset includes various traffic scenarios with different vehicle densities and environmental conditions. Each frame contains multiple types of vehicles, such as motorcycles and cars, which are relevant to the traffic violation detection task.
+
+The static camera setup ensures a consistent field of view across all frames, which is beneficial for defining Regions of Interest (ROI) and analyzing vehicle movement patterns over time. Sample frames from the dataset are shown in Fig.~\ref{fig:dataset_samples}.
+\begin{figure}[htbp]
+
+\centering
+\subfloat[Example frame from CCTV (Green Light Condition)]{
+    \includegraphics[width=0.45\linewidth]{figures/frame_1.png}
+    \label{fig:frame1}
+}
+\hfill
+\subfloat[Example frame from CCTV (Red Light Condition)]{
+    \includegraphics[width=0.45\linewidth]{figures/frame_2.png}
+    \label{fig:frame2}
+}
+\caption{Sample frames obtained from the CCTV at Simpang Gedongan Sleman.}
+\label{fig:dataset_samples}
+\end{figure}
+
 \subsection{Preprocessing}
-\subsection{Vehicle Detection using HOG-SVM}
-\subsection{Vehicle Tracking using SORT}
+Before being processed by the detection and tracking modules, the input frames undergo several preprocessing steps to improve efficiency and ensure consistency. First, each frame is resized to a fixed resolution of 768 × 768 pixels to match the input requirements of the detection model. This step also helps maintain a balance between computational cost and detection accuracy, particularly for detecting small objects such as motorcycles in CCTV footage.
+
+Next, a Region of Interest (ROI) is defined in the form of a polygon to restrict the analysis to the roadway area. By applying this ROI, the system ignores irrelevant regions such as sidewalks, buildings, and other background elements, thereby reducing noise and improving detection performance. All subsequent processes, including vehicle detection and tracking, are performed only within this polygonal region.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/diagram_preprocessing.png}
+    \caption{Diagram of Input Video Preprocessing Steps}
+    \label{fig:preprocessing}
+\end{figure}
+
+In addition, a separate region corresponding to the traffic light is selected for color analysis (Fig.~\ref{fig:traffic_light_roi}). The image in this region is converted into the HSV color space to facilitate robust detection of traffic light states under varying lighting conditions. These preprocessing steps ensure that the input data is structured and optimized for the subsequent stages of the proposed method.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/traffic_light_roi.png}
+    \caption{Traffic Light ROI Selection}
+    \label{fig:traffic_light_roi}
+\end{figure}
+
+\subsection{Vehicle Detection using YOLOv8}
+\subsection{Vehicle Tracking using DEEPSORT}
 \subsection{Traffic Light Detection using HSV}
 By utilizing the HSV color space, the proposed system can isolate the Hue component to identify traffic light states. This provides the algorithm with significant robustness against illumination variance, ensuring that the system can accurately distinguish between "Red" and "Green" signals regardless of whether the footage is captured during daylight or nighttime conditions.
+
+\begin{table}[h]
+\centering
+\caption{HSV Range for Traffic Light Color Detection}
+\label{tab:hsv_range}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Traffic Light} & \textbf{Hue (H)} & \textbf{Saturation (S)} & \textbf{Value (V)} \\ \hline
+Green  & [105, 185] & [60, 255] & [60, 255] \\ \hline
+Red    & [340, 365] & [80, 255] & [80, 255] \\ \hline
+Yellow & [5, 35]    & [55, 255] & [120, 255] \\ \hline
+\end{tabular}
+\end{table}
+
+Through conversion from RGB to HSV color space, the H, S, and V components of the image are obtained. Based on multiple experimental trials, the HSV ranges corresponding to different traffic light colors are determined, as shown in Table~\ref{tab:hsv_range}. The preprocessed image is then segmented using these HSV thresholds to extract relevant regions for further analysis, thereby enhancing the accuracy and efficiency of the overall detection system \cite{ref1}.
 \subsection{Violation Detection}
+The violation detection process is conducted by integrating vehicle trajectory information with the detected traffic light state (Fig.~\ref{fig:violation_detection}). A virtual boundary, referred to as the stop line, is defined within the Region of Interest (ROI) to represent the legal stopping limit at the intersection. Each detected vehicle is assigned a unique identity through the tracking module, enabling continuous monitoring of its movement across frames. By analyzing the position of each tracked vehicle relative to the stop line, the system determines whether the vehicle remains within the allowed area or crosses the predefined boundary.
+
+At the same time, the traffic light state is identified using HSV-based color detection within a predefined traffic light region. A violation is defined as the event where a tracked vehicle crosses the stop line while the traffic light is in a red state. When this condition is met, the system flags the vehicle as a violator and generates visual outputs, such as bounding boxes, object IDs, and alert indicators, to clearly represent the detected violation.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/violation_detection.png}
+    \caption{Visualization of Violation Detection Process}
+    \label{fig:violation_detection}
+\end{figure}
+
 \subsection{Evaluation Metrics}
 To assess the performance of the proposed traffic violation detection system, several standard statistical metrics will be utilized. These metrics provide a quantitative measure of how well the YOLOv8 and DEEPSORT model detects objects.
 \subsubsection{Accuracy}
@@ -102,6 +178,8 @@ $$Recall = \frac{TP}{TP + FN}$$
 \subsubsection{F1-Score}
 The harmonic mean of Precision and Recall.
 $$F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}$$
+
+\bibliographystyle{IEEEtran}
 \bibliography{references}  
 
 \end{document}
