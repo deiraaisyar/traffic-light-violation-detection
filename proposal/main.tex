@@ -28,7 +28,7 @@ deiraaisyarefani532821@mail.ugm.ac.id}
 \IEEEauthorblockA{\textit{Universitas Gadjah Mada} \\
 \textit{Department of Computer Science and Electronics}\\
 Yogyakarta, Indonesia \\
-email}
+finanazwaayesha@mail.ugm.ac.id}
 \and
 \IEEEauthorblockN{3\textsuperscript{rd} Farrel Tsaqif Anindyo}
 \text{24/536735/PA/22769}\\
@@ -61,10 +61,20 @@ Traffic signal violations at Simpang Gedongan, Sleman, pose significant risks to
 
 This study addresses these issues by implementing an integrated framework that utilizes YOLOv8 for high precision vehicle detection, DeepSORT for stable trajectory tracking, and HSV based segmentation for reliable signal state identification. By synchronizing these components, the proposed system aims to provide an efficient solution for automated traffic enforcement at complex urban intersections.
 \subsection{Objective}
+The primary objective of this study is to develop a reliable and computationally efficient automated system for real-time traffic signal violation detection. To achieve this, the research aims to implement a vehicle detection module using HOG-SVM that maintains high accuracy without requiring excessive hardware resources. This will be integrated with a robust HSV-based segmentation method to identify traffic light states under varying environmental lighting conditions. Furthermore, the system will utilize the SORT algorithm to maintain consistent vehicle trajectories and unique object identities across video frames. Finally, the study focuses on building a synchronized violation logic that evaluates vehicle movement against traffic light signals, ultimately testing the integrated system’s overall performance in terms of detection accuracy and real-time processing speed.
 \subsection{Scope}
 This study is limited to traffic signal violation detection using static CCTV footage at Simpang Gedongan, Sleman, with a resolution of pixels. The system utilizes YOLOv8 for vehicle detection and DeepSORT for trajectory tracking within a predefined polygonal Region of Interest (ROI). Traffic light identification is restricted to HSV based color segmentation under clear weather and stable lighting conditions. The analysis focuses on common motor vehicles, such as cars and motorcycles, traversing the intersection from a single camera viewpoint.
 \section{Literature Review}
 \subsection{Related Work}
+\begin{enumerate}
+    \item{Traffic Signal Violation Detection at Simpang Gedongan Sleman Using YOLOv8, HSV-Based Segmentation, and DEEPSORT} \\
+    This study addresses the inefficiency and human error associated with manual traffic enforcement. The research proposes a real-time automated surveillance system using YOLOv8 for vehicle identification and DeepSORT for trajectory tracking. A key contribution is the integration of the HSV (Hue, Saturation, Value) color model to detect traffic light states with high precision under varying environmental lighting conditions. 
+    {Result:} The system demonstrates high robustness in distinguishing between "Red" and "Green" signals regardless of daylight or nighttime conditions. By utilizing a polygon-based Region of Interest (ROI) and a virtual stop line, the system effectively flags violators and generates visual outputs like bounding boxes and alert indicators.
+
+    \item{Advanced Deep Learning for Traffic Surveillance} \\
+    This research focuses on the application of deep learning architectures to maintain high detection accuracy in complex urban environments. The study emphasizes that while object detection identifies vehicles, the integration of advanced tracking algorithms is critical for consistent monitoring within a predefined Region of Interest (ROI).
+    {Result:} The implementation of these models significantly improves the accuracy of identifying crossing violations by maintaining unique vehicle identities (IDs) even during occlusion. The findings suggest that digitizing the enforcement process through these combined methodologies enhances road safety and reduces the operational workload on traffic authorities.
+\end{enumerate}
 \subsection{HSV (Hue, Saturation, Value) Color Model}
 In the field of computer vision, selecting an appropriate color space is critical for the accuracy of object detection under varying environmental conditions. The HSV (Hue, Saturation, Value) color model is a cylindrical representation of colors that more closely aligns with human visual perception compared to the standard RGB model. While RGB defines colors as a combination of primary light sources, it is highly sensitive to changes in brightness, shadows, and external lighting.The HSV model decouples color information from intensity, using three distinct components:
 \begin{itemize}
@@ -78,6 +88,27 @@ YOLOv8 represents a significant advancement, offering an optimal trade off betwe
 
 The implementation of an optimized backbone and neck architecture facilitates superior feature extraction and gradient flow. These architectural enhancements render YOLOv8 highly effective for real time traffic surveillance at congested intersections, such as Simpang Gedongan, where diverse vehicle classes must be identified under dynamic conditions.
 \subsection{Deep Simple Online and Realtime Tracking (DeepSORT)}
+DeepSORT is an upgraded version of the SORT (Simple Online and Real-time Tracking) algorithm. Its main advantage is the ability to "remember" an object's visual features, which prevents the system from losing track or switching IDs when an object is briefly blocked or overlaps with another.
+
+The technical workflow of DeepSORT is broken down into four main stages:
+
+\begin{enumerate}
+    \item The system predicts where an object is headed using a Kalman Filter. It looks at the previous position and velocity to create an "educated guess" for the next frame. The state of each track is represented by an eight-dimensional vector:
+    \begin{equation}
+        x = [u, v, r, h, \dot{u}, \dot{v}, \dot{r}, \dot{h}]^T
+    \end{equation}
+    where $(u, v)$ are the center coordinates, $r$ is the aspect ratio, and $h$ is the height. This ensures the tracking stays smooth even during fast movements.
+
+    \item DeepSORT "looks" at the object's actual appearance using a Convolutional Neural Network (CNN). It saves these features as a unique visual fingerprint.
+
+    \item To match new detections with existing tracks, there are two scoring methods. First, the {Mahalanobis Distance} measures how far the detection is from the predicted position:
+    \begin{equation}
+        d^{(1)}(i, j) = (d_j - y_i)^T S_i^{-1} (d_j - y_i)
+    \end{equation}
+    Second, the {Cosine Similarity} checks if the visual fingerprint matches. These two scores are combined to ensure the match is accurate both spatially and visually.
+
+    \item The {Hungarian Algorithm} make the final "decision" on which detection belongs to which ID. This ensures every object keeps a consistent unique ID from the moment it enters the view until it leaves.
+\end{enumerate}
 
 \section{Methodology}
 \subsection{Proposed Method} 
@@ -175,12 +206,32 @@ To refine the raw predictions, two primary filters are applied:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/IMG_output.jpg}
+    \includegraphics[width=1.0 \linewidth]{IMG_output.jpg}
     \caption{Visual results of vehicle detection using YOLOv8}
     \label{fig:yolo_result}
 \end{figure}
 
 \subsection{Vehicle Tracking using DEEPSORT}
+
+Deep SORT is utilized in this study as a robust multi-object tracking framework. By incorporating deep learning-based appearance features, Deep SORT exhibits good performance in managing object occlusions and maintaining tracking stability despite changes in vehicle scale or rotation. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/deepsort_architecture.png}
+    \caption{Deep SORT Architecture for Multi-Object Tracking}
+    \label{fig:deepsort_architecture}
+\end{figure}
+
+The tracking mechanism primarily relies on the integration of two core algorithms:
+\begin{itemize}
+    \item{Kalman Filter:} 
+This component is responsible for state estimation, predicting the future trajectory of detected vehicles in subsequent frames based on their current motion patterns.
+
+    \item{Hungarian Algorithm:} To ensure data association, this algorithm utilizes a cost matrix to identify the optimal correspondence between the predicted positions from the Kalman Filter and the actual detections provided by YOLOv8.
+\end{itemize}
+
+In the context of this research, Deep SORT enables real-time monitoring of multiple vehicle trajectories. This continuous tracking is essential for the subsequent red-light violation analysis, as it allows the system to accurately determine if a specific vehicle ID has crossed the stop line during a prohibited signal state.
+
 \subsection{Traffic Light Detection using HSV}
 By utilizing the HSV color space, the proposed system can isolate the Hue component to identify traffic light states. This provides the algorithm with significant robustness against illumination variance, ensuring that the system can accurately distinguish between "Red" and "Green" signals regardless of whether the footage is captured during daylight or nighttime conditions.
 
