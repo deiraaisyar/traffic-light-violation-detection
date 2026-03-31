@@ -57,12 +57,12 @@ To address these challenges, we are trying to automate the surveillance process 
 
 This project proposes an automated traffic violation detection system that synchronizes vehicle tracking with traffic signal states. By digitizing the enforcement process, this system aims to enhance road safety and reduce the workload on traffic authorities.
 \subsection{Problem Statement}
-Traffic signal violations at Simpang Gedongan, Sleman, pose significant risks to road safety, yet conventional manual surveillance remains inefficient and prone to human error. Developing an automated detection system presents technical challenges, particularly in maintaining high accuracy for diverse vehicle types in dense traffic and ensuring robust traffic light recognition under varying lighting conditions. This study addresses these issues by implementing an integrated framework that utilizes YOLOv8 for high precision vehicle detection, DeepSORT for stable trajectory tracking, and HSV based segmentation for reliable signal state identification. By synchronizing these components, the proposed system aims to provide an efficient solution for automated traffic enforcement at complex urban intersections.
-\subsection{Objective}
-blabla
-\subsection{Scope}
-This study is limited to traffic signal violation detection using static CCTV footage at Simpang Gedongan, Sleman, with a resolution of 1920 $\times$ 1080 pixels. The system utilizes YOLOv8 for vehicle detection and DeepSORT for trajectory tracking within a predefined polygonal Region of Interest (ROI). Traffic light identification is restricted to HSV based color segmentation under clear weather and stable lighting conditions. The analysis focuses on common motor vehicles, such as cars and motorcycles, traversing the intersection from a single camera viewpoint.
+Traffic signal violations at Simpang Gedongan, Sleman, pose significant risks to road safety, yet conventional manual surveillance remains inefficient and prone to human error. Developing an automated detection system presents technical challenges, particularly in maintaining high accuracy for diverse vehicle types in dense traffic and ensuring robust traffic light recognition under varying lighting conditions. 
 
+This study addresses these issues by implementing an integrated framework that utilizes YOLOv8 for high precision vehicle detection, DeepSORT for stable trajectory tracking, and HSV based segmentation for reliable signal state identification. By synchronizing these components, the proposed system aims to provide an efficient solution for automated traffic enforcement at complex urban intersections.
+\subsection{Objective}
+\subsection{Scope}
+This study is limited to traffic signal violation detection using static CCTV footage at Simpang Gedongan, Sleman, with a resolution of pixels. The system utilizes YOLOv8 for vehicle detection and DeepSORT for trajectory tracking within a predefined polygonal Region of Interest (ROI). Traffic light identification is restricted to HSV based color segmentation under clear weather and stable lighting conditions. The analysis focuses on common motor vehicles, such as cars and motorcycles, traversing the intersection from a single camera viewpoint.
 \section{Literature Review}
 \subsection{Related Work}
 \subsection{HSV (Hue, Saturation, Value) Color Model}
@@ -72,7 +72,11 @@ In the field of computer vision, selecting an appropriate color space is critica
     \item Saturation ($S$): Indicates the vibrancy or purity of the color, ranging from $0$ to $100\%$.
     \item Value ($V$): Represents the brightness or luminance of the color.
 \end{itemize}
+
 \subsection{You Only Look Once (YOLOv8)}
+YOLOv8 represents a significant advancement, offering an optimal trade off between computational overhead and detection precision. Diverging from previous iterations, YOLOv8 adopts an anchor free detection paradigm, which mitigates model complexity and enhances generalization across multi scale object distributions. The architecture integrates a decoupled head design to process classification and localization tasks through independent branches, thereby facilitating more precise bounding box regression. 
+
+The implementation of an optimized backbone and neck architecture facilitates superior feature extraction and gradient flow. These architectural enhancements render YOLOv8 highly effective for real time traffic surveillance at congested intersections, such as Simpang Gedongan, where diverse vehicle classes must be identified under dynamic conditions.
 \subsection{Deep Simple Online and Realtime Tracking (DeepSORT)}
 
 \section{Methodology}
@@ -132,6 +136,50 @@ In addition, a separate region corresponding to the traffic light is selected fo
 \end{figure}
 
 \subsection{Vehicle Detection using YOLOv8}
+The implementation using YOLOv8 follows a structured four stage pipeline:
+\subsubsection{Data Input and Preprocessing}
+The input for the system are from the Simpang Gedongan CCTV. To ensure computational efficiency and compatibility with the YOLOv8 architecture, the following preprocessing steps are performed:
+\begin{itemize}
+    \item \textbf{Frame Resizing:} Each input frame is spatially resized to a resolution of pixel. This resolution provides an optimal balance between inference speed and the ability to detect small objects.
+    \item \textbf{Normalization:} Pixel intensities are normalized during the neural network's forward pass.
+    \item \textbf{Polygonal ROI Masking:} To reduce false positives from non roadway areas, a custom polygonal Region of Interest (ROI) is defined. Only pixels within this mask are processed for vehicle detection.
+\end{itemize}
+
+\subsubsection{Feature Extraction and Backbone}
+The preprocessed frames are passed through the YOLOv8 Backbone. This stage extracts complex hierarchical features from the traffic scene. To ensure that both large trucks and small motorcycles are represented with high semantic richness.
+
+\subsubsection{Anchor Free Prediction Head}
+YOLOv8 implements an anchor-free detection paradigm. The model directly predicts the center point of the vehicle and the distances to the bounding box edges. This approach is particularly effective at Simpang Gedongan, where vehicles often overlap in congested traffic. 
+
+\subsubsection{Post-Processing and Thresholding}
+To refine the raw predictions, two primary filters are applied:
+\begin{itemize}
+    \item \textbf{Confidence Thresholding:} Only detections with a confidence score $C > 0.5$ are retained, effectively filtering out low probability false detections.
+
+    The system calculates a Confidence Score ($S_c$) based on the probability of an object's presence and the accuracy of the predicted bounding box ($B_p$) relative to the ground truth ($B_g$). The Intersection over Union (IoU) is defined as:
+
+    \begin{equation}
+        IoU = \frac{|B_p \cap B_g|}{|B_p \cup B_g|}
+    \end{equation}
+
+    The final confidence score for each detected vehicle is then formulated as:
+
+    \begin{equation}
+       S_c = P(\text{Object}) \times IoU_{pred}^{truth}
+    \end{equation}
+
+    where $P(\text{Object})$ represents the probability that the bounding box contains a vehicle, and $IoU_{pred}^{truth}$ measures the spatial overlap between the predicted box and the actual object location. Only detections satisfying $S_c > 0.5$ are passed to the tracking module.
+    
+    \item \textbf{Non Maximum Suppression (NMS):} To handle redundant detections of the same vehicle, NMS is applied with an Intersection over Union (IoU) threshold. This ensures each vehicle is represented by a single, accurate bounding box ($B_p$) before being passed to the DeepSORT tracking module.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/IMG_output.jpg}
+    \caption{Visual results of vehicle detection using YOLOv8}
+    \label{fig:yolo_result}
+\end{figure}
+
 \subsection{Vehicle Tracking using DEEPSORT}
 \subsection{Traffic Light Detection using HSV}
 By utilizing the HSV color space, the proposed system can isolate the Hue component to identify traffic light states. This provides the algorithm with significant robustness against illumination variance, ensuring that the system can accurately distinguish between "Red" and "Green" signals regardless of whether the footage is captured during daylight or nighttime conditions.
