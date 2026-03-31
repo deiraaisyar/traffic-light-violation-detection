@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  31 MAR 2026 18:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.31)  31 MAR 2026 19:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -272,7 +272,8 @@ See the caption package documentation for explanation.
 ) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
-) (./main.aux)
+)
+No file main.aux.
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -289,7 +290,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
 LaTeX Font Info:    ... okay on input line 15.
-
 -- Lines per column: 56 (exact).
 (/usr/local/texlive/2026basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -321,61 +321,100 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 48.
  (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
+)
+Underfull \vbox (badness 1107) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
 
-]
-<figures/diagram_proposed_method.png, id=8, 5082.99pt x 1650.165pt>
+] [2]
+
+LaTeX Warning: Reference `fig:proposed_method' on page 3 undefined on input line 115.
+
+<figures/diagram_proposed_method.png, id=17, 5082.99pt x 1650.165pt>
 File: figures/diagram_proposed_method.png Graphic file (type png)
 <use figures/diagram_proposed_method.png>
-Package pdftex.def Info: figures/diagram_proposed_method.png  used on input line 91.
+Package pdftex.def Info: figures/diagram_proposed_method.png  used on input line 122.
 (pdftex.def)             Requested size: 226.79846pt x 73.62473pt.
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 98.
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 129.
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-<figures/frame_1.png, id=10, 1927.2pt x 1084.05pt>
+
+LaTeX Warning: Reference `fig:dataset_samples' on page 3 undefined on input line 131.
+
+<figures/frame_1.png, id=19, 1927.2pt x 1084.05pt>
 File: figures/frame_1.png Graphic file (type png)
 <use figures/frame_1.png>
-Package pdftex.def Info: figures/frame_1.png  used on input line 107.
+Package pdftex.def Info: figures/frame_1.png  used on input line 138.
 (pdftex.def)             Requested size: 113.39923pt x 63.78305pt.
 
-Underfull \hbox (badness 3930) in paragraph at lines 107--107
+Underfull \hbox (badness 3930) in paragraph at lines 138--138
 []\OT1/ptm/m/n/8 (a) |Ex-am-ple frame from CCTV
  []
 
-<figures/frame_2.png, id=11, 1927.2pt x 1084.05pt>
+<figures/frame_2.png, id=20, 1927.2pt x 1084.05pt>
 File: figures/frame_2.png Graphic file (type png)
 <use figures/frame_2.png>
-Package pdftex.def Info: figures/frame_2.png  used on input line 112.
+Package pdftex.def Info: figures/frame_2.png  used on input line 143.
 (pdftex.def)             Requested size: 113.39923pt x 63.78305pt.
-[2 <./figures/diagram_proposed_method.png> <./figures/frame_1.png> <./figures/frame_2.png>]
 <figures/diagram_preprocessing.png, id=21, 2477.255pt x 847.165pt>
 File: figures/diagram_preprocessing.png Graphic file (type png)
 <use figures/diagram_preprocessing.png>
-Package pdftex.def Info: figures/diagram_preprocessing.png  used on input line 124.
+Package pdftex.def Info: figures/diagram_preprocessing.png  used on input line 155.
 (pdftex.def)             Requested size: 226.79846pt x 77.56007pt.
+
+LaTeX Warning: Reference `fig:traffic_light_roi' on page 3 undefined on input line 160.
+
 <figures/traffic_light_roi.png, id=22, 882.29625pt x 351.3125pt>
 File: figures/traffic_light_roi.png Graphic file (type png)
 <use figures/traffic_light_roi.png>
-Package pdftex.def Info: figures/traffic_light_roi.png  used on input line 133.
+Package pdftex.def Info: figures/traffic_light_roi.png  used on input line 164.
 (pdftex.def)             Requested size: 226.79846pt x 90.30449pt.
-<figures/IMG_output.jpg, id=23, 2126.94624pt x 323.2075pt>
-File: figures/IMG_output.jpg Graphic file (type jpg)
-<use figures/IMG_output.jpg>
-Package pdftex.def Info: figures/IMG_output.jpg  used on input line 178.
-(pdftex.def)             Requested size: 252.0pt x 38.29004pt.
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3 <./figures/diagram_preprocessing.png> <./figures/traffic_light_roi.png (PNG copy)> <./figures/IMG_output.jpg>]
-<figures/violation_detection.png, id=31, 2027.575pt x 1055.945pt>
+[3 <./figures/diagram_proposed_method.png> <./figures/frame_1.png> <./figures/frame_2.png> <./figures/diagram_preprocessing.png>]
+
+LaTeX Warning: File `IMG_output.jpg' not found on input line 209.
+
+
+/Users/lommy/traffic-light-violation-detection/proposal/main.tex:209: Package pdftex.def Error: File `IMG_output.jpg' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.209 ...ics[width=1.0 \linewidth]{IMG_output.jpg}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 209.
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+<figures/deepsort_architecture.png, id=31, 761.84625pt x 330.23375pt>
+File: figures/deepsort_architecture.png Graphic file (type png)
+<use figures/deepsort_architecture.png>
+Package pdftex.def Info: figures/deepsort_architecture.png  used on input line 220.
+(pdftex.def)             Requested size: 232.19843pt x 100.64807pt.
+ [4 <./figures/traffic_light_roi.png (PNG copy)>]
+
+LaTeX Warning: Reference `tab:hsv_range' on page 5 undefined on input line 251.
+
+
+LaTeX Warning: Citation `ref1' on page 5 undefined on input line 251.
+
+
+LaTeX Warning: Reference `fig:violation_detection' on page 5 undefined on input line 253.
+
+<figures/violation_detection.png, id=36, 2027.575pt x 1055.945pt>
 File: figures/violation_detection.png Graphic file (type png)
 <use figures/violation_detection.png>
-Package pdftex.def Info: figures/violation_detection.png  used on input line 208.
+Package pdftex.def Info: figures/violation_detection.png  used on input line 259.
 (pdftex.def)             Requested size: 226.79846pt x 118.10391pt.
- (./main.bbl)
+(./main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -387,25 +426,32 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4 <./figures/violation_detection.png>] (./main.aux)
+[5 <./figures/deepsort_architecture.png> <./figures/violation_detection.png>] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 5813 strings out of 469006
- 97226 string characters out of 5454813
- 513915 words of memory out of 5000000
- 34457 multiletter control sequences out of 15000+600000
- 667768 words of font info for 124 fonts, out of 8000000 for 9000
+ 5881 strings out of 469006
+ 98648 string characters out of 5454813
+ 513692 words of memory out of 5000000
+ 34522 multiletter control sequences out of 15000+600000
+ 668283 words of font info for 126 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 69i,11n,79p,745b,393s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (4 pages, 11276123 bytes).
+ 69i,11n,79p,970b,393s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (5 pages, 11198806 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 85 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
