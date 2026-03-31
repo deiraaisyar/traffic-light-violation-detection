@@ -61,7 +61,7 @@ Traffic signal violations at Simpang Gedongan, Sleman, pose significant risks to
 \subsection{Objective}
 blabla
 \subsection{Scope}
-This study is limited to traffic signal violation detection using static CCTV footage at Simpang Gedongan Sleman, Yogyakarta. The system utilizes HOG-SVM for vehicle detection and HSV-based segmentation for traffic light detection. The analysis is restricted to a fixed camera view and predefined regions of interest, without considering varying environmental conditions or multiple camera setups.
+This study is limited to traffic signal violation detection using static CCTV footage at Simpang Gedongan, Sleman, with a resolution of 1920 $\times$ 1080 pixels. The system utilizes YOLOv8 for vehicle detection and DeepSORT for trajectory tracking within a predefined polygonal Region of Interest (ROI). Traffic light identification is restricted to HSV based color segmentation under clear weather and stable lighting conditions. The analysis focuses on common motor vehicles, such as cars and motorcycles, traversing the intersection from a single camera viewpoint.
 
 \section{Literature Review}
 \subsection{Related Work}
