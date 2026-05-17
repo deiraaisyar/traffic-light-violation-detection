@@ -1,0 +1,69 @@
+\documentclass[conference]{IEEEtran}
+
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{subfig}
+
+\begin{document}
+
+\title{Traffic Signal Violation Detection at Simpang Gedongan Sleman Using YOLOv8, HSV-Based Segmentation, and DEEPSORT}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Deira Aisya Refani}
+\text{24/532821/PA/22539}\\
+\IEEEauthorblockA{\textit{Universitas Gadjah Mada} \\
+\textit{Department of Computer Science and Electronics}\\
+Yogyakarta, Indonesia \\
+deiraaisyarefani532821@mail.ugm.ac.id}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Finanazwa Ayesha}
+\text{24/532953/PA/22556}\\
+\IEEEauthorblockA{\textit{Universitas Gadjah Mada} \\
+\textit{Department of Computer Science and Electronics}\\
+Yogyakarta, Indonesia \\
+finanazwaayesha@mail.ugm.ac.id}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Farrel Tsaqif Anindyo}
+\text{24/536735/PA/22769}\\
+\IEEEauthorblockA{\textit{Universitas Gadjah Mada} \\
+\textit{Department of Computer Science and Electronics}\\
+Yogyakarta, Indonesia \\
+farreltsaqifanindyo@mail.ugm.ac.id}
+\and
+\IEEEauthorblockN{4\textsuperscript{th} Yohana Butar Butar}
+\text{24/546690/PA/23212}\\
+\IEEEauthorblockA{\textit{Universitas Gadjah Mada} \\
+\textit{Department of Computer Science and Electronics}\\
+Yogyakarta, Indonesia \\
+yohanabutarbutar546690@mail.ugm.ac.id}
+}
+
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/literature_review}
+\input{sections/methodology}
+\input{sections/experiments_results}
+\input{sections/conclusion}
+
+\newif\ifbibfileempty
+\newread\bibcheck
+\openin\bibcheck=references.bib
+\ifeof\bibcheck
+	\bibfileemptytrue
+\else
+	\bibfileemptyfalse
+\fi
+\closein\bibcheck
+
+\ifbibfileempty\else
+	\nocite{*}
+	\bibliographystyle{IEEEtran}
+	\bibliography{references}
+\fi
+
+\end{document}
