@@ -1,2 +1,8 @@
-/pkac-finpro/
-/experiment/
+pkac-finpro/
+experiment/
+
+*.md
+object_detection_only/
+!README.md
+
+dataset/
