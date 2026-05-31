@@ -1,13 +1,31 @@
 \section{Introduction}
 
 \subsection{Background}
-Write the background of the problem here.
+The rapid growth of urban populations and the increasing number of motor vehicles have placed significant pressure on road infrastructure and traffic management systems. One of the most critical challenges in modern transportation is the high frequency of traffic light violations, which remain a leading cause of urban road accidents and congestion. Conventional methods of traffic enforcement, such as manual monitoring by officers or basic static camera systems, are often inefficient, labor-intensive, and prone to human error, making 24/7 surveillance difficult to maintain.
+
+To address these challenges, we are trying to automate the surveillance process using a video from CCTV by utilizing a method in Computer Vision and Artificial Intelligence. By implementing real-time object detection and tracking, specifically through models like YOLOv8 for vehicle identification and DeepSORT for trajectory tracking, it is now possible to automate the monitoring of traffic flow. Furthermore, integrating specialized color analysis using the HSV (Hue, Saturation, Value) model allows for high-precision detection of traffic light states under varying environmental lighting conditions.
+
+This project proposes an automated traffic violation detection system that synchronizes vehicle tracking with traffic signal states. By digitizing the enforcement process, this system aims to enhance road safety and reduce the workload on traffic authorities.
 
 \subsection{Problem Statement}
-Write the problem statement here.
+Traffic signal violations at Simpang Gedongan, Sleman, pose significant risks to road safety, yet conventional manual surveillance remains inefficient and prone to human error. Developing an automated detection system presents technical challenges, particularly in maintaining high accuracy for diverse vehicle types in dense traffic and ensuring robust traffic light recognition under varying lighting conditions. 
+
+This study addresses these issues by implementing an integrated framework that utilizes YOLOv8 for high precision vehicle detection, DeepSORT for stable trajectory tracking, and HSV based segmentation for reliable signal state identification. By synchronizing these components, the proposed system aims to provide an efficient solution for automated traffic enforcement at complex urban intersections.
 
 \subsection{Objective}
-Write the main objective of the study here.
+The primary objective of this study is to develop a reliable and computationally efficient automated system for real-time traffic signal violation detection. To achieve this, the research aims to implement a vehicle detection module using HOG-SVM that maintains high accuracy without requiring excessive hardware resources. This will be integrated with a robust HSV-based segmentation method to identify traffic light states under varying environmental lighting conditions. Furthermore, the system will utilize the SORT algorithm to maintain consistent vehicle trajectories and unique object identities across video frames. Finally, the study focuses on building a synchronized violation logic that evaluates vehicle movement against traffic light signals, ultimately testing the integrated system’s overall performance in terms of detection accuracy and real-time processing speed.
 
 \subsection{Scope}
-Write the scope and limitations of the study here.
+\begin{itemize}
+    \item The study focuses on traffic signal violation detection at the Wirosaban Intersection, Yogyakarta, using footage from a fixed CCTV camera.
+    
+    \item Vehicle detection and tracking are performed using YOLOv8 and DeepSORT.
+    
+    \item Traffic light recognition is limited to red and green signal detection using HSV-based color segmentation.
+    
+    \item The system is optimized for nighttime conditions, where traffic light colors are more distinguishable.
+    
+    \item Detection performance may decrease under rainy weather, poor visibility, or varying lighting conditions.
+    
+    \item The CCTV footage provides limited coverage of both the roadway and traffic signals, which may affect detection accuracy.
+\end{itemize}
