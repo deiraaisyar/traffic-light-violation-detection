@@ -1,10 +1,14 @@
 pkac-finpro/
 experiment/
+dataset/
+video_ex/
+notebook/
+modules/
+model/
+object_detection_only/
+notebook/
 
 *.md
-object_detection_only/
 !README.md
 
-dataset/
-
-video/
+inference.py

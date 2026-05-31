@@ -3,3 +3,6 @@ opencv-python
 joblib
 scikit-learn
 ffmpeg
+scipy 
+filterpy
+ultralytics
