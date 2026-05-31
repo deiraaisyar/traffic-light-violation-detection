@@ -1,16 +1,22 @@
 \documentclass[conference]{IEEEtran}
 
 \IEEEoverridecommandlockouts
-\usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{subfig}
+\usepackage{booktabs}
+\usepackage{float}
 
+\usepackage[style=ieee, sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+\input{tables}
+\input{figures}
 \begin{document}
 
-\title{Traffic Signal Violation Detection at Simpang Gedongan Sleman Using YOLOv8, HSV-Based Segmentation, and DEEPSORT}
+\title{Traffic Signal Violation Detection at Simpang Wirosaban Using YOLOv11, HSV Thresholding, and SORT}
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Deira Aisya Refani}
 \text{24/532821/PA/22539}\\
@@ -61,10 +67,6 @@ yohanabutarbutar546690@mail.ugm.ac.id}
 \fi
 \closein\bibcheck
 
-\ifbibfileempty\else
-	\nocite{*}
-	\bibliographystyle{IEEEtran}
-	\bibliography{references}
-\fi
+\printbibliography
 
 \end{document}

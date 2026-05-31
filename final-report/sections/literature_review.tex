@@ -1,4 +1,5 @@
 \section{Literature Review}
+\figDiagramProcess
 
 \subsection{Related Work}
 \begin{enumerate}
@@ -10,6 +11,7 @@
     This research focuses on the application of deep learning architectures to maintain high detection accuracy in complex urban environments. The study emphasizes that while object detection identifies vehicles, the integration of advanced tracking algorithms is critical for consistent monitoring within a predefined Region of Interest (ROI).
     {Result:} The implementation of these models significantly improves the accuracy of identifying crossing violations by maintaining unique vehicle identities (IDs) even during occlusion. The findings suggest that digitizing the enforcement process through these combined methodologies enhances road safety and reduces the operational workload on traffic authorities.
 \end{enumerate}
+
 \subsection{HSV (Hue, Saturation, Value) Color Model}
 In the field of computer vision, selecting an appropriate color space is critical for the accuracy of object detection under varying environmental conditions. The HSV (Hue, Saturation, Value) color model is a cylindrical representation of colors that more closely aligns with human visual perception compared to the standard RGB model. While RGB defines colors as a combination of primary light sources, it is highly sensitive to changes in brightness, shadows, and external lighting.The HSV model decouples color information from intensity, using three distinct components:
 \begin{itemize}
@@ -18,29 +20,7 @@ In the field of computer vision, selecting an appropriate color space is critica
     \item Value ($V$): Represents the brightness or luminance of the color.
 \end{itemize}
 
-\subsection{You Only Look Once (YOLOv8)}
-YOLOv8 represents a significant advancement, offering an optimal trade off between computational overhead and detection precision. Diverging from previous iterations, YOLOv8 adopts an anchor free detection paradigm, which mitigates model complexity and enhances generalization across multi scale object distributions. The architecture integrates a decoupled head design to process classification and localization tasks through independent branches, thereby facilitating more precise bounding box regression. 
+\subsection{You Only Look Once (YOLOv11)}
 
-The implementation of an optimized backbone and neck architecture facilitates superior feature extraction and gradient flow. These architectural enhancements render YOLOv8 highly effective for real time traffic surveillance at congested intersections, such as Simpang Gedongan, where diverse vehicle classes must be identified under dynamic conditions.
-\subsection{Deep Simple Online and Realtime Tracking (DeepSORT)}
-DeepSORT is an upgraded version of the SORT (Simple Online and Real-time Tracking) algorithm. Its main advantage is the ability to "remember" an object's visual features, which prevents the system from losing track or switching IDs when an object is briefly blocked or overlaps with another.
+\subsection{Deep Simple Online and Realtime Tracking (SORT)}
 
-The technical workflow of DeepSORT is broken down into four main stages:
-
-\begin{enumerate}
-    \item The system predicts where an object is headed using a Kalman Filter. It looks at the previous position and velocity to create an "educated guess" for the next frame. The state of each track is represented by an eight-dimensional vector:
-    \begin{equation}
-        x = [u, v, r, h, \dot{u}, \dot{v}, \dot{r}, \dot{h}]^T
-    \end{equation}
-    where $(u, v)$ are the center coordinates, $r$ is the aspect ratio, and $h$ is the height. This ensures the tracking stays smooth even during fast movements.
-
-    \item DeepSORT "looks" at the object's actual appearance using a Convolutional Neural Network (CNN). It saves these features as a unique visual fingerprint.
-
-    \item To match new detections with existing tracks, there are two scoring methods. First, the {Mahalanobis Distance} measures how far the detection is from the predicted position:
-    \begin{equation}
-        d^{(1)}(i, j) = (d_j - y_i)^T S_i^{-1} (d_j - y_i)
-    \end{equation}
-    Second, the {Cosine Similarity} checks if the visual fingerprint matches. These two scores are combined to ensure the match is accurate both spatially and visually.
-
-    \item The {Hungarian Algorithm} make the final "decision" on which detection belongs to which ID. This ensures every object keeps a consistent unique ID from the moment it enters the view until it leaves.
-\end{enumerate}

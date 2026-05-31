@@ -1,31 +1,33 @@
 \section{Introduction}
 
 \subsection{Background}
-The rapid growth of urban populations and the increasing number of motor vehicles have placed significant pressure on road infrastructure and traffic management systems. One of the most critical challenges in modern transportation is the high frequency of traffic light violations, which remain a leading cause of urban road accidents and congestion. Conventional methods of traffic enforcement, such as manual monitoring by officers or basic static camera systems, are often inefficient, labor-intensive, and prone to human error, making 24/7 surveillance difficult to maintain.
 
-To address these challenges, we are trying to automate the surveillance process using a video from CCTV by utilizing a method in Computer Vision and Artificial Intelligence. By implementing real-time object detection and tracking, specifically through models like YOLOv8 for vehicle identification and DeepSORT for trajectory tracking, it is now possible to automate the monitoring of traffic flow. Furthermore, integrating specialized color analysis using the HSV (Hue, Saturation, Value) model allows for high-precision detection of traffic light states under varying environmental lighting conditions.
+Traffic signal violations, particularly red light running, constitute one of the most prevalent and dangerous forms of traffic misconduct at urban intersections. \cite{who2023} In Indonesia, the problem has reached a critical scale. Data from the National Criminal Information Center of the Indonesian National Police recorded 148,798 traffic accidents throughout 2023, of which 94.63\% were attributed to human error \cite{pusiknas2024}. The Director of Traffic Accident Investigation of the Indonesian National Police further stated that every accident is preceded by a violation, underscoring the direct causal relationship between traffic infractions and collision events \cite{pusiknas2024}. Simpang Wirosaban, a signalized intersection in Yogyakarta, represents a typical urban intersection in Indonesia where such violations occur at high frequency, particularly during nighttime hours when traffic enforcement is minimal. The absence of automated monitoring at such locations necessitates a technology-driven approach to continuous, objective violation detection.
 
-This project proposes an automated traffic violation detection system that synchronizes vehicle tracking with traffic signal states. By digitizing the enforcement process, this system aims to enhance road safety and reduce the workload on traffic authorities.
+Conventional methods of traffic enforcement rely on human officers stationed at intersections or on radar-based sensors embedded in road infrastructure. These approaches are costly to deploy and maintain, limited in spatial coverage, and susceptible to human fatigue and inconsistency \cite{ong2024}. The proliferation of closed-circuit television (CCTV) infrastructure at intersections across Indonesian cities presents an opportunity to repurpose existing hardware for automated enforcement without additional installation costs. Computer vision techniques applied to CCTV footage have demonstrated considerable promise in this domain. Ong et al. \cite{ong2024} proposed a YOLO-based system targeting red light crossing and double-line overtaking violations from CCTV footage, establishing a foundational framework for vision-based violation detection. Similarly, Tomas et al. \cite{tomas2024} demonstrated that YOLOv5 combined with Faster R-CNN achieved high accuracy in detecting red light and wrong-way violations at intersections, reinforcing the viability of deep learning pipelines for this task.
 
-\subsection{Problem Statement}
-Traffic signal violations at Simpang Gedongan, Sleman, pose significant risks to road safety, yet conventional manual surveillance remains inefficient and prone to human error. Developing an automated detection system presents technical challenges, particularly in maintaining high accuracy for diverse vehicle types in dense traffic and ensuring robust traffic light recognition under varying lighting conditions. 
+Vehicle detection in video-based systems has been significantly advanced by the YOLO family of single-stage object detectors. Since its introduction, YOLO has undergone continuous architectural refinement, with each iteration improving detection accuracy and inference speed. YOLO11, released by Ultralytics in September 2024 at YOLO Vision 2024, introduced C3K2 blocks, an enhanced Spatial Pyramid Pooling Fast (SPPF) module, and a C2PSA partial spatial attention mechanism \cite{ultralytics2024}. The YOLO11m variant achieves higher mean average precision on the COCO benchmark with 22\% fewer parameters than its YOLOv8m predecessor, making it well-suited for real-time deployment on constrained hardware \cite{ultralytics2024}. For multi-object tracking across video frames, this study employs the Simple Online and Realtime Tracking (SORT) algorithm proposed by Bewley et al. \cite{bewley2016}, which combines the Kalman filter for state estimation with the Hungarian algorithm for frame-to-frame data association. Despite its computational simplicity, SORT achieves tracking performance comparable to significantly more complex methods while operating at over 260 Hz, satisfying the latency requirements of real-time traffic monitoring.
 
-This study addresses these issues by implementing an integrated framework that utilizes YOLOv8 for high precision vehicle detection, DeepSORT for stable trajectory tracking, and HSV based segmentation for reliable signal state identification. By synchronizing these components, the proposed system aims to provide an efficient solution for automated traffic enforcement at complex urban intersections.
+A persistent challenge in nighttime traffic surveillance is the degradation of image quality caused by uneven illumination, vehicle headlight glare, and sensor noise, all of which reduce object detection confidence. Lashkov et al. \cite{lashkov2023} demonstrated that Contrast Limited Adaptive Histogram Equalization (CLAHE) applied as a preprocessing step substantially improves vehicle detection performance in nighttime conditions. Unlike standard histogram equalization, CLAHE operates on localized image tiles and enforces a contrast limit to prevent noise amplification, making it particularly effective for scenes with spatially non-uniform lighting such as signalized intersections at night \cite{zuiderveld1994, chen2023clahe}. In this study, CLAHE is applied exclusively to the luminance channel of the LAB color space prior to YOLO11 inference, preserving the chrominance information required by the HSV-based traffic light detector. This decoupled enhancement strategy ensures that preprocessing improvements to vehicle detection do not introduce artifacts into the color-sensitive components of the pipeline.
 
 \subsection{Objective}
-The primary objective of this study is to develop a reliable and computationally efficient automated system for real-time traffic signal violation detection. To achieve this, the research aims to implement a vehicle detection module using HOG-SVM that maintains high accuracy without requiring excessive hardware resources. This will be integrated with a robust HSV-based segmentation method to identify traffic light states under varying environmental lighting conditions. Furthermore, the system will utilize the SORT algorithm to maintain consistent vehicle trajectories and unique object identities across video frames. Finally, the study focuses on building a synchronized violation logic that evaluates vehicle movement against traffic light signals, ultimately testing the integrated system’s overall performance in terms of detection accuracy and real-time processing speed.
+The primary objectives of this study include:
+\begin{itemize}
+    \item To develop a real-time traffic violation detection system capable of identifying vehicles that cross the stop line during a red light signal using CCTV footage.
+    \item To implement vehicle detection and multi-object tracking using YOLOv11 and SORT algorithm to accurately localize and track vehicles within a defined detection zone.
+    \item To design a rule-based violation logic that determines infractions based on vehicle trajectory relative to the stop line and the current traffic light state.
+    \item To evaluate the effectiveness of image enhancement techniques, including CLAHE, Gamma Correction.
+\end{itemize}
 
 \subsection{Scope}
+The scope of the study includes:
 \begin{itemize}
-    \item The study focuses on traffic signal violation detection at the Wirosaban Intersection, Yogyakarta, using footage from a fixed CCTV camera.
-    
-    \item Vehicle detection and tracking are performed using YOLOv8 and DeepSORT.
-    
-    \item Traffic light recognition is limited to red and green signal detection using HSV-based color segmentation.
-    
+    \item The study only can be implemented at the Simpang Wirosaban, Yogyakarta, using footage from a fixed CCTV camera.
     \item The system is optimized for nighttime conditions, where traffic light colors are more distinguishable.
-    
     \item Detection performance may decrease under rainy weather, poor visibility, or varying lighting conditions.
-    
-    \item The CCTV footage provides limited coverage of both the roadway and traffic signals, which may affect detection accuracy.
 \end{itemize}
+
+
+
+
+

@@ -1,7 +1,7 @@
 \section{Methodology}
 
 \subsection{Proposed Approach}
-This study proposes a computer vision–based approach for detecting traffic signal violations using CCTV at Wirosaban footage from a static camera. The system is designed as a multi-stage pipeline consisting of preprocessing, vehicle detection, object tracking, traffic light recognition, and violation analysis (Fig.~\ref{fig:proposed_method}). To improve efficiency and reduce noise, a polygon-based Region of Interest (ROI) is defined to limit the analysis to the roadway area, excluding irrelevant regions such as sidewalks and surrounding infrastructure.
+This study proposes a computer vision–based approach for detecting traffic signal violations using CCTV at Wirosaban footage from a static camera. The system is designed as a multi-stage pipeline consisting of preprocessing, vehicle detection, object tracking, traffic light recognition, and violation analysis. To improve efficiency and reduce noise, a polygon-based Region of Interest (ROI) is defined to limit the analysis to the roadway area, excluding irrelevant regions such as sidewalks and surrounding infrastructure.
 
 Within this ROI, vehicle detection is performed using YOLOv8, focusing only on vehicles located inside the polygonal area. The detected vehicles are then processed using an object tracking method to assign unique identities and maintain their trajectories across consecutive frames. This tracking process enables consistent monitoring of each vehicle’s movement over time, which is essential for determining whether a vehicle has crossed a predefined boundary.
 
