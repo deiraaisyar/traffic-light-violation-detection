@@ -6,3 +6,5 @@ object_detection_only/
 !README.md
 
 dataset/
+
+video/

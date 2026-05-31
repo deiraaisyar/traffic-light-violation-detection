@@ -13,7 +13,7 @@ class VehicleDetector:
         self.scaler     = joblib.load(model_dir / "scaler.joblib")
         self.hog_params = joblib.load(model_dir / "hog_config.joblib")
 
-        win = self.hog_params["window_size"]   # (width, height)
+        win = self.hog_params["window_size"]   
         self.WIN_W = win[0]
         self.WIN_H = win[1]
 

@@ -1,2 +1,5 @@
 pandas
 opencv-python
+joblib
+scikit-learn
+ffmpeg
