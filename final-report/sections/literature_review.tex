@@ -2,15 +2,6 @@
 \figDiagramProcess
 
 \subsection{Related Work}
-\begin{enumerate}
-    \item{Traffic Signal Violation Detection at Simpang Gedongan Sleman Using YOLOv8, HSV-Based Segmentation, and DEEPSORT} \\
-    This study addresses the inefficiency and human error associated with manual traffic enforcement. The research proposes a real-time automated surveillance system using YOLOv8 for vehicle identification and DeepSORT for trajectory tracking. A key contribution is the integration of the HSV (Hue, Saturation, Value) color model to detect traffic light states with high precision under varying environmental lighting conditions. 
-    {Result:} The system demonstrates high robustness in distinguishing between "Red" and "Green" signals regardless of daylight or nighttime conditions. By utilizing a polygon-based Region of Interest (ROI) and a virtual stop line, the system effectively flags violators and generates visual outputs like bounding boxes and alert indicators.
-
-    \item{Advanced Deep Learning for Traffic Surveillance} \\
-    This research focuses on the application of deep learning architectures to maintain high detection accuracy in complex urban environments. The study emphasizes that while object detection identifies vehicles, the integration of advanced tracking algorithms is critical for consistent monitoring within a predefined Region of Interest (ROI).
-    {Result:} The implementation of these models significantly improves the accuracy of identifying crossing violations by maintaining unique vehicle identities (IDs) even during occlusion. The findings suggest that digitizing the enforcement process through these combined methodologies enhances road safety and reduces the operational workload on traffic authorities.
-\end{enumerate}
 
 \subsection{HSV (Hue, Saturation, Value) Color Model}
 In the field of computer vision, selecting an appropriate color space is critical for the accuracy of object detection under varying environmental conditions. The HSV (Hue, Saturation, Value) color model is a cylindrical representation of colors that more closely aligns with human visual perception compared to the standard RGB model. While RGB defines colors as a combination of primary light sources, it is highly sensitive to changes in brightness, shadows, and external lighting.The HSV model decouples color information from intensity, using three distinct components:
@@ -20,7 +11,13 @@ In the field of computer vision, selecting an appropriate color space is critica
     \item Value ($V$): Represents the brightness or luminance of the color.
 \end{itemize}
 
-\subsection{You Only Look Once (YOLOv11)}
+\subsection{You Only Look Once 11 (YOLO11)}
 
-\subsection{Deep Simple Online and Realtime Tracking (SORT)}
+\subsection{Simple Online and Realtime Tracking (SORT)}
+
+\subsection{Contrast Limited Adaptive Histogram Equalization (CLAHE)}
+
+\subsection{Gamma Correction}
+
+\subsection{Gaussian Blur}
 

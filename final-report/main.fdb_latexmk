@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1780264674.75651 "main.bcf" "main.bbl" "main" 1780264677.17525 0
-  "main.bcf" 1780264677.08628 107945 a45e04d274ef53fec6584430a780ae98 "pdflatex"
+["biber main"] 1780265662.9108 "main.bcf" "main.bbl" "main" 1780265699.06934 0
+  "main.bcf" 1780265698.98599 107945 a45e04d274ef53fec6584430a780ae98 "pdflatex"
   "references.bib" 1780264260.56161 2878 1930993e34b4c1f4441cfb6070499eb2 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780264675.86311 "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" "main.pdf" "main" 1780264677.17559 2
+["pdflatex"] 1780265697.69375 "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" "main.pdf" "main" 1780265699.06966 0
   "/etc/texmf/web2c/texmf.cnf" 1769066915.60936 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" 1780264490.28144 1932 e848dfb0655723d7bdc14c0da2ee6eca ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -37,6 +37,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1136849748 44729 811d6c62865936705a31c797a1d5dada ""
   "/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb" 1136849748 44656 0cbca70e0534538582128f6b54593cca ""
@@ -109,17 +110,17 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1772978833 8212219 5299be7cc806af29510ce38d64ce6846 ""
   "figures.tex" 1780263948.48364 7116 bd98b5a3da806a2db309785c5ff062cd ""
   "figures/overall_process.png" 1780263735.80714 2504151 345a0acdfdfe83b4e63fc5cf79bc2fe4 ""
-  "main.aux" 1780264677.08532 4256 8d4c20fc1be4ce3b03b1fd91878645ea "pdflatex"
-  "main.bbl" 1780264675.83677 12477 61650622c812ccf79dad984829a77b77 "biber main"
-  "main.run.xml" 1780264677.08819 2402 56852d278ba209bb0ab3bc25df88febf "pdflatex"
+  "main.aux" 1780265698.98399 4651 6c8faefb25741f52c8948920d17af2ab "pdflatex"
+  "main.bbl" 1780265690.58061 12477 61650622c812ccf79dad984829a77b77 "biber main"
+  "main.run.xml" 1780265698.98769 2402 7c866ed2192e71c57464ed4279aadefa "pdflatex"
   "main.tex" 1780264490.28144 1932 e848dfb0655723d7bdc14c0da2ee6eca ""
   "references.bib" 1780264260.56161 2878 1930993e34b4c1f4441cfb6070499eb2 ""
   "sections/abstract.tex" 1779023805.21945 171 ab4290a28ee94e10ae5c560078a2f316 ""
   "sections/conclusion.tex" 1779023805.21995 145 b6e435326cbe9361d76ac123d4c4ee89 ""
-  "sections/experiments_results.tex" 1780264667.65 153 77f82c3ab4636389699325698e55cdec ""
+  "sections/experiments_results.tex" 1780265697.46502 513 9bfd32e26343c69d7682ee5751bf46a1 ""
   "sections/introduction.tex" 1780264232.63839 5754 bdfb6bcb92da0c17df9cbb5fac604e17 ""
-  "sections/literature_review.tex" 1780264638.07747 2894 5dddd7d9f46f2890143b7e8e83b132e8 ""
-  "sections/methodology.tex" 1780264037.86043 1845 e087d98c165a041c6d2d6af52de1e772 ""
+  "sections/literature_review.tex" 1780265412.86019 1308 9bf88de86b2328bdbfd34027ea26c0bb ""
+  "sections/methodology.tex" 1780265330.00244 3406 ee8d34fe59851a9efaea6a046877a8e0 ""
   "tables.tex" 1779076053.95218 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "main.aux"

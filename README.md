@@ -1,8 +1,11 @@
 # Traffic Light Violation Detection
 
-<video src="video_output/example.mp4" controls width="900"></video>
+<p align="center">
+  <img src="video/example.gif" alt="Traffic Light Violation Detection Demo" width="900">
+</p>
 
-If the preview does not load in your viewer, open: [video_output/example.mp4](video_output/example.mp4).
+**Video Source:**  
+https://drive.google.com/drive/folders/1iic4c2b9uD5DTnOXk-Nk85RIOlwvbzPP?usp=sharing
 
 ## Team
 
