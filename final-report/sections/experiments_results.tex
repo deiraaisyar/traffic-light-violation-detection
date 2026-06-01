@@ -1,24 +1,114 @@
-\section{RESULT}
+\section{Result}
 
 \subsection{Detection Performance with and without Image Enhancement}
 
 \begin{figure}[htbp]
-
     \centering
-
     \includegraphics[width=0.5\textwidth]{figures/Comparison_enhancement.png}
-
     \caption{Comparison of vehicle detection}
-
     \label{fig:enhancement_comp}
-
 \end{figure} 
 
 To evaluate the proposed enhancement pipeline, detection performance was compared between raw and processed frames. The system sequentially applies gamma correction, CLAHE, and unsharp masking to input frames prior to YOLO11 inference.  
 
 The three-stage pipeline significantly improves vehicle localization in low-light conditions. Gamma correction elevates mid-tone intensity for underexposed regions, while CLAHE improves local contrast without noise amplification. Additionally, unsharp masking mitigates motion blur by sharpening object contours, resulting in more precise bounding box regression. Comparative analysis confirms that the enhanced pipeline consistently achieves a higher detection count and superior confidence scores compared to the baseline model operating on raw input. 
+
 \subsection{Traffic Light State Recognition}
-% Tambahkan konten untuk bagian ini
+
+This experiment evaluates the performance of the proposed HSV-based traffic light classifier under both daytime and nighttime conditions at Simpang Wirosaban. Representative examples of successful and unsuccessful classifications are presented in Figures~\ref{fig:day_red_detected}--\ref{fig:night_green_detected}. The objective of this evaluation is not only to demonstrate the ability of the system to identify traffic light states, but also to analyze situations in which classification errors occur due to environmental and geometric factors.
+
+\subsubsection{Daytime Conditions}
+
+Figure~\ref{fig:day_red_detected} shows an example of successful red-light detection during daytime operation. Despite the presence of strong ambient illumination, the illuminated red lamp remains sufficiently distinguishable within the predefined ROI, allowing the HSV thresholding procedure to correctly classify the traffic signal state as RED.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/day_red_detected.png}
+\caption{Successful red-light detection during daytime conditions.}
+\label{fig:day_red_detected}
+\end{figure}
+
+Figure~\ref{fig:day_yellow_missed} illustrates a missed yellow-light detection during daytime conditions. The yellow signal occupies only a small portion of the ROI and exhibits relatively low color saturation due to the strong sunlight reflected by surrounding objects. Consequently, the resulting HSV values overlap with background pixels and fail to satisfy the predefined threshold ranges.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/day_yellow_missed.png}
+\caption{Missed yellow-light detection during daytime conditions.}
+\label{fig:day_yellow_missed}
+\end{figure}
+
+The green-light state was generally easier to detect under daylight conditions because of its relatively high intensity and contrast against the traffic signal housing. As shown in Figure~\ref{fig:day_green_detected}, the classifier successfully identified the active green lamp using the predefined HSV thresholds.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/day_green_detected.png}
+\caption{Successful green-light detection during daytime conditions.}
+\label{fig:day_green_detected}
+\end{figure}
+
+Figure~\ref{fig:day_red_missed} presents a representative failure case for red-light detection during the day. In this frame, the traffic signal is observed from a highly oblique viewing angle, causing the illuminated red lamp to occupy only a limited number of pixels within the ROI. Additionally, strong ambient illumination reduces the apparent color saturation of the lamp and introduces reflections around the signal housing. As a result, the extracted HSV values fall outside the predefined threshold range, preventing successful classification.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/day_red_missed.png}
+\caption{Missed red-light detection during daytime conditions caused by unfavorable viewing angle and illumination effects.}
+\label{fig:day_red_missed}
+\end{figure}
+
+Overall, daytime performance was more susceptible to misclassification due to illumination variability, reflections, and the relatively small size of the traffic signal within the captured frame. Since the traffic light occupies only a small fraction of the total image area, small changes in viewing angle or brightness can significantly affect the color distribution observed within the ROI.
+
+\subsubsection{Nighttime Conditions}
+
+Nighttime traffic light recognition generally exhibited more stable performance than daytime operation. Under low ambient illumination, the active signal lamp becomes the dominant source of intensity within the ROI, resulting in more distinct color clusters in HSV space.
+
+Figure~\ref{fig:night_red_detected} shows successful red-light detection during nighttime conditions. The illuminated red lamp exhibits high contrast against the darker background, enabling reliable segmentation using the red HSV thresholds.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/night_red_detected.png}
+\caption{Successful red-light detection during nighttime conditions.}
+\label{fig:night_red_detected}
+\end{figure}
+
+Similarly, the yellow-light state was successfully identified, as shown in Figure~\ref{fig:night_yellow_detected}. Although yellow generally presents greater classification difficulty due to its overlap with neighboring hue regions, the reduced background illumination at night improves color separation and facilitates accurate detection.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/night_yellow_detected.png}
+\caption{Successful yellow-light detection during nighttime conditions.}
+\label{fig:night_yellow_detected}
+\end{figure}
+
+Figure~\ref{fig:night_green_detected} demonstrates successful green-light detection during nighttime operation. The green signal produces a strong and well-defined response within the HSV color space, resulting in consistent classification across consecutive frames.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/night_green_detected.png}
+\caption{Successful green-light detection during nighttime conditions.}
+\label{fig:night_green_detected}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\caption{Qualitative Evaluation of Traffic Light Recognition}
+\label{tab:tls_results}
+\begin{tabular}{ccc}
+\hline
+Condition & Traffic Light State & Detection Result \\
+\hline
+Daytime & Red & Detected \\
+Daytime & Yellow & Missed \\
+Daytime & Green & Detected \\
+Daytime & Red (Case 2) & Missed \\
+Nighttime & Red & Detected \\
+Nighttime & Yellow & Detected \\
+Nighttime & Green & Detected \\
+\hline
+\end{tabular}
+\end{table}
+
+The experimental observations indicate that nighttime conditions are generally more favorable for HSV-based traffic light recognition. The reduced influence of ambient illumination allows the emitted light from the signal lamp to dominate the ROI, thereby increasing color separability and reducing classification ambiguity. Most observed failures occurred during daytime operation and were primarily caused by unfavorable camera geometry, low signal occupancy within the ROI, and illumination-induced color distortion rather than limitations of the classification algorithm itself.
 
 \subsection{Error Analysis}
 This study successfully developed a real-time traffic signal violation detection system using YOLOv11, SORT, and HSV-based traffic light detection. The system was able to detect and track vehicles within the defined ROI, recognize red and green traffic light signals, and automatically count vehicles that violated the red light. The ROI also helped focus the monitoring area and reduce unnecessary detections. Overall, the system showed good performance during daytime conditions. However, further improvements are needed to ensure reliable performance in nighttime conditions.
+
