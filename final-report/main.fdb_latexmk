@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1780288309.8666 "main.bcf" "main.bbl" "main" 1780288312.4256 0
-  "main.bcf" 1780288312.35484 108655 d5b3a63f2f505472b61dcd32ec0b9ebe "pdflatex"
-  "references.bib" 1780288250.25369 3514 092cdebe6f1889f375dc37525abaaec1 ""
+["biber main"] 1780289432.44875 "main.bcf" "main.bbl" "main" 1780289439.56294 0
+  "main.bcf" 1780289439.49684 108848 a484bf0637e121e005f524f4d941eda7 "pdflatex"
+  "references.bib" 1780289432.22378 4727 47ae0ab6b2a6fe7784968b82b8c7b62d ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780288310.7351 "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" "main.pdf" "main" 1780288312.426 0
+["pdflatex"] 1780289437.60234 "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" "main.pdf" "main" 1780289439.56325 0
   "/etc/texmf/web2c/texmf.cnf" 1769066915.60936 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" 1780287810.21662 1932 e848dfb0655723d7bdc14c0da2ee6eca ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -120,21 +120,24 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1772978781.9752 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1772978833 8212219 5299be7cc806af29510ce38d64ce6846 ""
-  "figures.tex" 1780287744.3504 7548 8f7761816eba7dff63b54f4bbf50e60f ""
+  "figures.tex" 1780289321.42675 7947 f2ffefb46a5352e1f16a57b85ed0f3a9 ""
+  "figures/enhance_1_gamma.png" 1780288999.09936 2208168 4ba6a989a1e21ca820e752995b969131 ""
+  "figures/enhance_2_clahe.png" 1780288999.80337 2424974 8d9a5b493e8cbf3f3872583046e0ff0a ""
+  "figures/enhance_3_unsharp.png" 1780289001.23441 2850288 07dfe80509c2a8ebe026b3fba8ba5304 ""
   "figures/overall_process.png" 1780263735.80714 2504151 345a0acdfdfe83b4e63fc5cf79bc2fe4 ""
   "figures/violation_detection.png" 1780287163.74584 111896 6c479b7e1ccffb55f173bf27454f1b43 ""
   "figures/yolo11_arch.png" 1780287575.59748 468524 b85ac1076701052a6e27966259d29b19 ""
-  "main.aux" 1780288312.35284 6455 9cd65eb7d76662a1d747e3b32d49fba6 "pdflatex"
-  "main.bbl" 1780288310.71247 14957 6a99a5526931de323d81f63a471c8190 "biber main"
-  "main.run.xml" 1780288312.3564 2402 7c866ed2192e71c57464ed4279aadefa "pdflatex"
+  "main.aux" 1780289439.49584 7253 b983f63e972c8c6cc40b54b6f7c27d26 "pdflatex"
+  "main.bbl" 1780289433.3031 16115 8b049c6cd761dccd7ee806507adb0a04 "biber main"
+  "main.run.xml" 1780289439.49839 2402 7c866ed2192e71c57464ed4279aadefa "pdflatex"
   "main.tex" 1780287810.21662 1932 e848dfb0655723d7bdc14c0da2ee6eca ""
-  "references.bib" 1780288250.25369 3514 092cdebe6f1889f375dc37525abaaec1 ""
+  "references.bib" 1780289432.22378 4727 47ae0ab6b2a6fe7784968b82b8c7b62d ""
   "sections/abstract.tex" 1779023805.21945 171 ab4290a28ee94e10ae5c560078a2f316 ""
   "sections/conclusion.tex" 1779023805.21995 145 b6e435326cbe9361d76ac123d4c4ee89 ""
   "sections/experiments_results.tex" 1780265697.46502 513 9bfd32e26343c69d7682ee5751bf46a1 ""
   "sections/introduction.tex" 1780264232.63839 5754 bdfb6bcb92da0c17df9cbb5fac604e17 ""
-  "sections/literature_review.tex" 1780288234.38025 5025 186d1bcdbc63d4c64089aa6cd2806dcb ""
-  "sections/methodology.tex" 1780288308.9539 11490 9a844e21233ca530b1340d00f7eecdf6 ""
+  "sections/literature_review.tex" 1780289410.75654 7736 1e8f52c13847df481dc3a1987a0ff602 ""
+  "sections/methodology.tex" 1780289371.9894 11534 a6742126bef71c39ec05990df8c244f1 ""
   "tables.tex" 1779076053.95218 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "main.aux"

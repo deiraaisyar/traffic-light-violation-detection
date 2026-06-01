@@ -295,6 +295,34 @@
       \verb 10.1109/LGRS.2023.3265827
       \endverb
     \endentry
+    \entry{mohan2023}{inproceedings}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=f169112846b6323f968a217e063bc01c}{%
+           family={Mohan},
+           familyi={M\bibinitperiod},
+           given={Abhinand},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{78d28ad47db954f56ef17a7b2def0f5e}
+      \strng{fullhash}{78d28ad47db954f56ef17a7b2def0f5e}
+      \strng{bibnamehash}{78d28ad47db954f56ef17a7b2def0f5e}
+      \strng{authorbibnamehash}{78d28ad47db954f56ef17a7b2def0f5e}
+      \strng{authornamehash}{78d28ad47db954f56ef17a7b2def0f5e}
+      \strng{authorfullhash}{78d28ad47db954f56ef17a7b2def0f5e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2nd International Conference on Automation, Computing and Renewable Systems (ICACRS)}
+      \field{isbn}{979-8-3503-4023-5}
+      \field{title}{{YOLOv8} for Traffic Violation Detection}
+      \field{year}{2023}
+    \endentry
     \entry{khanam2024yolo11}{article}{}
       \name{author}{2}{}{%
         {{hash=a94f326244d9ab506d3da2d9aa20e3c0}{%

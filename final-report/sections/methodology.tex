@@ -28,11 +28,15 @@ I_{out} = 255 \cdot \left(\frac{I_{in}}{255}\right)^{1/\gamma}
 
 \noindent where $I_{in}$ is the original pixel intensity and $\gamma = 1.5$. A value of $\gamma > 1$ brightens the image by elevating mid-tone and shadow regions, which improves the visibility of vehicles in underexposed areas of the frame. The transformation is implemented as a precomputed lookup table (LUT) for computational efficiency.
 
+\figGammaCorrection
+
 \subsubsection{CLAHE}
 Following gamma correction, CLAHE is applied to enhance local contrast. Unlike global histogram equalization, CLAHE divides the image into a grid of non-overlapping tiles and performs histogram equalization independently within each tile, with a contrast limit (\texttt{clipLimit = 2.0}) that prevents noise amplification in near-uniform regions \cite{zuiderveld1994}. To avoid introducing color distortion, CLAHE is applied exclusively to the luminance channel $L$ of the LAB color space, while the chrominance channels $A$ and $B$ remain unmodified. The enhanced $L$ channel is then merged back before converting the frame to BGR.
 
 \subsubsection{Unsharp Masking}
 Unsharp masking is applied as the final enhancement step to sharpen object boundaries degraded by motion blur. The operation subtracts a Gaussian-blurred version of the frame from the original according to Equation~\ref{eq:unsharp}:
+
+\figCLAHE
 
 \begin{equation}
 I_{sharp} = (1 + \alpha) \cdot I - \alpha \cdot G_\sigma(I)
@@ -40,6 +44,7 @@ I_{sharp} = (1 + \alpha) \cdot I - \alpha \cdot G_\sigma(I)
 \end{equation}
 
 \noindent where $G_\sigma$ denotes Gaussian blurring with $\sigma = 1.0$ and $\alpha = 1.5$ controls sharpening strength. The result accentuates high-frequency edge information, improving the definition of vehicle contours in motion-blurred nighttime frames.
+\figUnsharp
 
 \subsection{Vehicle Detection Using YOLO11}
 Vehicle detection is performed using YOLO11m, a medium-sized variant of the YOLO11 architecture provided by Ultralytics. The model is loaded via the \texttt{ultralytics} library and configured with a confidence threshold of 0.35 and an IoU threshold of 0.4. Detection is restricted to five COCO class indices corresponding to vehicle categories: bicycle (1), car (2), motorcycle (3), bus (5), and truck (7).
