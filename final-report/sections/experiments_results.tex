@@ -1,9 +1,24 @@
-\section{Result}
+\section{RESULT}
 
 \subsection{Detection Performance with and without Image Enhancement}
 
+\begin{figure}[htbp]
+
+    \centering
+
+    \includegraphics[width=0.5\textwidth]{figures/Comparison_enhancement.png}
+
+    \caption{Comparison of vehicle detection}
+
+    \label{fig:enhancement_comp}
+
+\end{figure} 
+
+To evaluate the proposed enhancement pipeline, detection performance was compared between raw and processed frames. The system sequentially applies gamma correction, CLAHE, and unsharp masking to input frames prior to YOLO11 inference.  
+
+The three-stage pipeline significantly improves vehicle localization in low-light conditions. Gamma correction elevates mid-tone intensity for underexposed regions, while CLAHE improves local contrast without noise amplification. Additionally, unsharp masking mitigates motion blur by sharpening object contours, resulting in more precise bounding box regression. Comparative analysis confirms that the enhanced pipeline consistently achieves a higher detection count and superior confidence scores compared to the baseline model operating on raw input. 
 \subsection{Traffic Light State Recognition}
+% Tambahkan konten untuk bagian ini
 
 \subsection{Error Analysis}
-
-
+% Tambahkan konten untuk bagian ini
