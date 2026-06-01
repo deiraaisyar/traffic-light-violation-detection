@@ -1,7 +1,7 @@
 # Traffic Light Violation Detection
 
 <p align="center">
-  <img src="video/example.gif" alt="Traffic Light Violation Detection Demo" width="900">
+  <img src="video_output/example.gif" alt="Traffic Light Violation Detection Demo" width="900">
 </p>
 
 **Video Source:**  

@@ -8,15 +8,69 @@ Prior to vehicle detection, each frame undergoes a three-stage image enhancement
 Within the defined ROI, vehicle detection is performed using YOLO11, which identifies vehicles present inside the polygonal area on each frame. The detected bounding boxes are subsequently processed by the Simple Online and Realtime Tracking (SORT) algorithm, which employs a Kalman filter for state prediction and the Hungarian algorithm for frame-to-frame identity association. This tracking mechanism assigns a persistent unique identifier to each vehicle and maintains its trajectory across consecutive frames, enabling reliable monitoring of individual vehicle movements over time.
 
 In parallel with vehicle detection, the traffic light state is determined using an HSV color-based thresholding method applied to a dedicated ROI positioned at the traffic light location in the frame. The detected state is used as a conditional input to the violation logic module. A virtual stop line is defined within the ROI to represent the legal stopping boundary at the intersection. Violation detection is triggered when a tracked vehicle, whose trajectory originated from within the ROI, crosses the stop line at the moment the traffic light is in a red state. To prevent duplicate records, each unique vehicle identity is registered as a violation at most once. The system produces output in the form of annotated video frames displaying bounding boxes, vehicle identities, stop line geometry, and a running violation counter, providing a structured and automated means of traffic violation documentation.
+\figDiagramProcess
 
-\subsection{Dataset}
-Write the dataset description here.
+\subsection{Data Acquisition}
+The video data used in this study was obtained from a publicly accessible CCTV stream provided by the Yogyakarta Provincial Government through the official traffic monitoring portal at \texttt{https://cctv.jogjaprov.go.id}, specifically from the Simpang Wirosaban (RSUD) Timur View camera. The footage was recorded at a resolution of 1920$\times$1200 pixels under two distinct lighting conditions, namely daytime and nighttime, to ensure that the system is evaluated against varying illumination environments representative of real-world deployment scenarios.
+
+The acquired footage serves two primary purposes in this study. First, a subset of frames extracted from the video is used to manually define the polygon-based Region of Interest (ROI) that delimits the active roadway area subject to monitoring. The ROI polygon is specified by selecting boundary coordinates that enclose the relevant lane area while excluding sidewalks, parked vehicles, and surrounding infrastructure. The virtual stop line is also derived from this process, defined as a segment spanning two vertices of the ROI polygon that corresponds to the legal stopping boundary at the intersection. Second, the remaining footage is used directly for system inference, serving as the primary input to the full detection and violation analysis pipeline during both development and evaluation phases.
 
 \subsection{Image Enhancement}
-Write the preprocessing steps here.
+To improve vehicle detection performance under nighttime and uneven lighting conditions, a three-stage image enhancement pipeline is applied to each frame prior to YOLO11 inference. The pipeline consists of Gamma Correction, Contrast Limited Adaptive Histogram Equalization (CLAHE), and Unsharp Masking, applied sequentially. The original unmodified frame is retained separately for traffic light detection and output rendering.
 
-\subsection{Detection and Tracking}
+\subsubsection{Gamma Correction}
+Gamma correction adjusts the overall brightness of a frame through a nonlinear pixel intensity transformation defined in Equation~\ref{eq:gamma}:
+
+\begin{equation}
+I_{out} = 255 \cdot \left(\frac{I_{in}}{255}\right)^{1/\gamma}
+\label{eq:gamma}
+\end{equation}
+
+\noindent where $I_{in}$ is the original pixel intensity and $\gamma = 1.5$. A value of $\gamma > 1$ brightens the image by elevating mid-tone and shadow regions, which improves the visibility of vehicles in underexposed areas of the frame. The transformation is implemented as a precomputed lookup table (LUT) for computational efficiency.
+
+\subsubsection{CLAHE}
+Following gamma correction, CLAHE is applied to enhance local contrast. Unlike global histogram equalization, CLAHE divides the image into a grid of non-overlapping tiles and performs histogram equalization independently within each tile, with a contrast limit (\texttt{clipLimit = 2.0}) that prevents noise amplification in near-uniform regions \cite{zuiderveld1994}. To avoid introducing color distortion, CLAHE is applied exclusively to the luminance channel $L$ of the LAB color space, while the chrominance channels $A$ and $B$ remain unmodified. The enhanced $L$ channel is then merged back before converting the frame to BGR.
+
+\subsubsection{Unsharp Masking}
+Unsharp masking is applied as the final enhancement step to sharpen object boundaries degraded by motion blur. The operation subtracts a Gaussian-blurred version of the frame from the original according to Equation~\ref{eq:unsharp}:
+
+\begin{equation}
+I_{sharp} = (1 + \alpha) \cdot I - \alpha \cdot G_\sigma(I)
+\label{eq:unsharp}
+\end{equation}
+
+\noindent where $G_\sigma$ denotes Gaussian blurring with $\sigma = 1.0$ and $\alpha = 1.5$ controls sharpening strength. The result accentuates high-frequency edge information, improving the definition of vehicle contours in motion-blurred nighttime frames.
+
+\subsection{Vehicle Detection Using YOLO11}
+Vehicle detection is performed using YOLO11m, a medium-sized variant of the YOLO11 architecture provided by Ultralytics. The model is loaded via the \texttt{ultralytics} library and configured with a confidence threshold of 0.35 and an IoU threshold of 0.4. Detection is restricted to five COCO class indices corresponding to vehicle categories: bicycle (1), car (2), motorcycle (3), bus (5), and truck (7).
+
+For each frame, the model performs inference on the enhanced frame and returns bounding boxes in \texttt{xyxy} format along with their confidence scores. Detections whose centroid falls outside the detection polygon are discarded using \texttt{cv2.pointPolygonTest} prior to being passed to the tracker. A secondary Non-Maximum Suppression (NMS) step is applied post-inference with an IoU threshold of 0.5 to suppress redundant overlapping boxes that may arise from adjacent detections of the same vehicle.
+
+\subsection{Vehicle Tracking Using SORT}
+At each frame, every active tracker predicts its next state via the Kalman filter's linear motion model. The predicted bounding boxes are then matched against YOLO11 detections using the Hungarian algorithm applied to a pairwise IoU cost matrix. A detection–tracker pair is accepted if their IoU exceeds 0.25 (\texttt{iou\_threshold}); otherwise both are treated as unmatched. Unmatched detections spawn new trackers, while matched trackers update their Kalman state with the observed measurement.
+
+A tracker is only included in the output if it has been matched for at least \texttt{min\_hits = 2} consecutive frames, which suppresses short-lived false detections. A tracker is deleted if it has not been matched for more than \texttt{max\_age = 30} frames. Each confirmed tracker is assigned a globally unique integer identity that persists across frames, forming the trajectory used by the violation logic module.
+
+\subsection{Traffic Light Color Classifier Using HSV thresholding}
 Write the detection and tracking method here.
 
-\subsection{Violation Logic}
-Write the violation decision logic here.
+\subsection{Traffic Signal Violation Logic}
+A violation is recorded when a tracked vehicle crosses the virtual stop line while the traffic light state is \texttt{RED} (Figure \ref{fig:violation_detection}). The stop line is defined as a segment connecting two vertices of the detection polygon, specifically from coordinate $(916, 762)$ to $(1260, 586)$.
+
+For each tracked vehicle, the system computes the signed side of the stop line using the cross product formulation in Equation~\ref{eq:side}:
+
+\figViolationDetection
+
+\begin{equation}
+d = (x_2 - x_1)(c_y - y_1) - (y_2 - y_1)(c_x - x_1)
+\label{eq:side}
+\end{equation}
+
+\noindent where $(x_1, y_1)$ and $(x_2, y_2)$ are the endpoints of the stop line, and $(c_x, c_y)$ is the vehicle centroid. The sign of $d$ determines which side of the line the centroid lies on. A crossing event is detected when the sign of $d$ changes between two consecutive frames, indicating that the vehicle has traversed the stop line.
+
+To suppress false positives arising from tracking noise or detections outside the roadway, two additional validity conditions are enforced. First, the midpoint between the vehicle's previous and current positions must be within 150 pixels of the stop line segment. Second, at least one of the two positions must lie within the detection polygon. A crossing that satisfies both conditions is registered to \texttt{crossed\_ids}. If the traffic light state at the moment of crossing is \texttt{RED}, the vehicle identity is added to \texttt{violation\_ids} and the violation counter is incremented.
+
+To handle tracker ID reassignment caused by occlusion or missed detections, a ghost tracking mechanism is implemented. When a raw tracker ID disappears from the active track list, its last known position is retained for up to 60 frames (\texttt{ghost\_ttl = 60}). If a new raw ID appears within 60 pixels (\texttt{remap\_threshold = 60}) of a ghost's last position, it is remapped to the original canonical ID, preserving trajectory continuity across ID switches.
+
+\subsection{Violated Vehicle Counting}
+Each vehicle identity is permitted to register at most one violation regardless of how many times it crosses the stop line during a session. This constraint is enforced by checking membership in \texttt{violation\_ids} prior to incrementing the counter. The total violation count is maintained as a running integer (\texttt{violation\_count}) and is rendered directly onto each output frame alongside the current traffic light state and timestamp.

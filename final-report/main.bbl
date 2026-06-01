@@ -295,6 +295,70 @@
       \verb 10.1109/LGRS.2023.3265827
       \endverb
     \endentry
+    \entry{khanam2024yolo11}{article}{}
+      \name{author}{2}{}{%
+        {{hash=a94f326244d9ab506d3da2d9aa20e3c0}{%
+           family={Khanam},
+           familyi={K\bibinitperiod},
+           given={Rahima},
+           giveni={R\bibinitperiod}}}%
+        {{hash=506b587186b760b2f884e19c703f7ffd}{%
+           family={Hussain},
+           familyi={H\bibinitperiod},
+           given={Muhammad},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{4d2c72e575a86de750b3c33375e767d9}
+      \strng{fullhash}{4d2c72e575a86de750b3c33375e767d9}
+      \strng{bibnamehash}{4d2c72e575a86de750b3c33375e767d9}
+      \strng{authorbibnamehash}{4d2c72e575a86de750b3c33375e767d9}
+      \strng{authornamehash}{4d2c72e575a86de750b3c33375e767d9}
+      \strng{authorfullhash}{4d2c72e575a86de750b3c33375e767d9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2410.17725}
+      \field{title}{{YOLOv11}: An Overview of the Key Architectural Enhancements}
+      \field{year}{2024}
+      \verb{doi}
+      \verb 10.48550/arXiv.2410.17725
+      \endverb
+    \endentry
+    \entry{farrugia_2025_17508018}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=9c4d8a4bffa8aef421152a50f190513a}{%
+           family={Farrugia},
+           familyi={F\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Zenodo}%
+      }
+      \strng{namehash}{9c4d8a4bffa8aef421152a50f190513a}
+      \strng{fullhash}{9c4d8a4bffa8aef421152a50f190513a}
+      \strng{bibnamehash}{9c4d8a4bffa8aef421152a50f190513a}
+      \strng{authorbibnamehash}{9c4d8a4bffa8aef421152a50f190513a}
+      \strng{authornamehash}{9c4d8a4bffa8aef421152a50f190513a}
+      \strng{authorfullhash}{9c4d8a4bffa8aef421152a50f190513a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{YOLO11 Architecture Diagram: Visual Representation of the YOLO11 Object Detection Model}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.5281/zenodo.17508018
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.5281/zenodo.17508018
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.5281/zenodo.17508018
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

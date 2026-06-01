@@ -1,5 +1,4 @@
 \section{Literature Review}
-\figDiagramProcess
 
 \subsection{Related Work}
 
@@ -13,11 +12,24 @@ In the field of computer vision, selecting an appropriate color space is critica
 
 \subsection{You Only Look Once 11 (YOLO11)}
 
+YOLO11 is a single-stage object detection model released by Ultralytics in September 2024 at the YOLO Vision 2024 event \cite{ultralytics2024}. It follows the conventional backbone–neck–head architecture common to the YOLO family, with three principal architectural innovations that distinguish it from its predecessors.
+
+The backbone employs C3k2 blocks (Cross Stage Partial with kernel size 2) as a replacement for the C2f blocks used in YOLOv8. C3k2 implements the CSP bottleneck using two convolutions with smaller kernels, reducing parameter count while preserving gradient flow across stages \cite{khanam2024yolo11}. Multi-scale feature aggregation is handled by the Spatial Pyramid Pooling Fast (SPPF) module in the neck, which applies sequential max-pooling operations of fixed kernel size and concatenates the results, enabling the model to capture context at multiple receptive field scales without the computational overhead of the original SPP formulation. Following SPPF, the C2PSA module (Convolutional block with Parallel Spatial Attention) incorporates a self-attention mechanism that allows the model to selectively weight spatial regions of the feature map, improving sensitivity to small and partially occluded objects \cite{khanam2024yolo11}. The detection head retains the decoupled structure introduced in YOLOv8, maintaining separate branches for classification and bounding box regression.
+
+\figYOLOArchitecture
+
+Compared to YOLOv8m, YOLO11m achieves higher mean Average Precision (mAP) on the COCO benchmark while using 22\% fewer parameters \cite{ultralytics2024}, making it well suited for real-time deployment on GPU hardware. In this study, the medium variant (YOLO11m) is used with inference restricted to five COCO vehicle classes: bicycle, car, motorcycle, bus, and truck.
+
 \subsection{Simple Online and Realtime Tracking (SORT)}
 
-\subsection{Contrast Limited Adaptive Histogram Equalization (CLAHE)}
+SORT is a multi-object tracking algorithm proposed by Bewley et al. \cite{bewley2016} that follows the tracking-by-detection paradigm, where an external detector supplies bounding boxes each frame and the tracker is responsible solely for associating detections across time. Despite relying exclusively on bounding box geometry without any appearance features, SORT achieves tracking accuracy comparable to far more complex methods while operating at over 260 Hz \cite{bewley2016}.
 
-\subsection{Gamma Correction}
+Each tracked object is represented by a \texttt{KalmanBoxTracker} with a 7-dimensional state vector:
 
-\subsection{Gaussian Blur}
+\begin{equation}
+\mathbf{x} = [c_x,\ c_y,\ s,\ r,\ \dot{c}_x,\ \dot{c}_y,\ \dot{s}]^T
+\end{equation}
 
+\noindent where $c_x$ and $c_y$ are the centroid coordinates of the bounding box, $s$ is the box area, $r$ is the aspect ratio, and $\dot{c}_x$, $\dot{c}_y$, $\dot{s}$ are their respective first-order velocities. The aspect ratio $r$ is assumed constant. The Kalman filter employs a constant velocity linear motion model as the state transition, with the observation vector consisting of $[c_x, c_y, s, r]^T$ only. At each frame, every active tracker advances its state estimate through the Kalman prediction step before any new detections are considered.
+
+Association between predicted tracker states and incoming detections is formulated as a linear assignment problem. An IoU cost matrix is constructed between all predicted bounding boxes and all current detections, and the optimal one-to-one assignment is solved using the Hungarian algorithm \cite{bewley2016}. A detection–tracker pair is accepted only if their IoU exceeds a minimum threshold; pairs below this threshold are treated as unmatched. Matched trackers update their Kalman states with the observed measurement. Unmatched detections initialize new trackers, and trackers that remain unmatched beyond a maximum age threshold are removed. A tracker is only reported as a confirmed track once it has been matched for a minimum number of consecutive frames, suppressing spurious short-lived detections.

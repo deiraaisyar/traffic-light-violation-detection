@@ -52,85 +52,93 @@
 % --- FIGURE DEFINITIONS ---
 
 \newcommand{\figDiagramProcess}{%
-\stdFigureWide{fig:diagram_process}{figures/overall_process.png}{Diagram flow of traffic signal violation detection at Simpang Wirosaban.}
+\stdFigure{fig:diagram_process}{figures/overall_process.png}{Diagram flow of traffic signal violation detection at Simpang Wirosaban.}
 }
 
-% Figure 1: Class Distribution in Data Train
-\newcommand{\figClassDistribution}{%
-\stdFigure{fig:class_distribution}{figures/distribusi_kelas_mako.png}{Hasil Kurasi Data Latih}
+\newcommand{\figViolationDetection}{%
+\stdFigure{fig:violation_detection}{figures/violation_detection.png}{Violation detection illustration.}
 }
 
-% Figure 2: Diagram Flow
-\newcommand{\figDiagramFlow}{%
-\stdFigure{fig:diagram_flow}{figures/diagram_flow.png}{Alur Pengerjaan Eksperimen}
+\newcommand{\figYOLOArchitecture}{%
+\stdFigure{fig:yolo11_architecture}{figures/yolo11_arch.png}{The architecture of YOLO11 \cite{farrugia_2025_17508018}.}
 }
 
-% Figure 3: Alur Penelitian
-\newcommand{\figAlurPenelitian}{%
-\stdFigure{fig:alur_penelitian}{figures/alur_penelitian_final.drawio.png}{Diagram alur penelitian yang mencakup tahap kurasi data, desain arsitektur dengan empat varian ablasi, proses pelatihan, hingga evaluasi model.}
-}
+% % Figure 1: Class Distribution in Data Train
+% \newcommand{\figClassDistribution}{%
+% \stdFigure{fig:class_distribution}{figures/distribusi_kelas_mako.png}{Hasil Kurasi Data Latih}
+% }
 
-% Figure 3: Dataset Examples
-\newcommand{\figDatasetExamples}{%
-\stdFigure{fig:dataset_examples}{figures/dataset_examples.png}{Sampel Gambar Pada Data Latih}
-}
+% % Figure 2: Diagram Flow
+% \newcommand{\figDiagramFlow}{%
+% \stdFigure{fig:diagram_flow}{figures/diagram_flow.png}{Alur Pengerjaan Eksperimen}
+% }
 
-% Figure 4: Persebaran Ukuran Citra
-\newcommand{\figPixelAreaDistribution}{%
-\stdFigure{fig:persebaran_ukuran_citra}{figures/persebaran_ukuran_citra.png}{Persebaran Ukuran Citra di Setiap Kelas pada Data Latih}
-}
+% % Figure 3: Alur Penelitian
+% \newcommand{\figAlurPenelitian}{%
+% \stdFigure{fig:alur_penelitian}{figures/alur_penelitian_final.drawio.png}{Diagram alur penelitian yang mencakup tahap kurasi data, desain arsitektur dengan empat varian ablasi, proses pelatihan, hingga evaluasi model.}
+% }
 
-% Figure 5: Oversampling Illustration
-\newcommand{\figOversamplingIllustration}{%
-\stdFigure{fig:oversampling_illustration}{figures/oversampling_illustration.png}{Ilustrasi \textit{Oversampling} \cite{he2009imbalanced}}
-}
+% % Figure 3: Dataset Examples
+% \newcommand{\figDatasetExamples}{%
+% \stdFigure{fig:dataset_examples}{figures/dataset_examples.png}{Sampel Gambar Pada Data Latih}
+% }
 
-% Figure 6: Oversampling Illustration
-\newcommand{\figSpectralFreq}{%
-\stdFigure{fig:spectral_freq}{figures/spektral_frekuensi.png}{Visualisasi 2D-FFT}
-}
+% % Figure 4: Persebaran Ukuran Citra
+% \newcommand{\figPixelAreaDistribution}{%
+% \stdFigure{fig:persebaran_ukuran_citra}{figures/persebaran_ukuran_citra.png}{Persebaran Ukuran Citra di Setiap Kelas pada Data Latih}
+% }
 
-% Figure 7: ViT Architecture
-\newcommand{\figViTArchitecture}{%
-\stdFigure{fig:vit_architecture}{figures/vit_architecture.png}{Ilustrasi Arsitektur Model \textit{Baseline Vision Transformer} (ViT) \cite{dosovitskiy2020image}}
-}
+% % Figure 5: Oversampling Illustration
+% \newcommand{\figOversamplingIllustration}{%
+% \stdFigure{fig:oversampling_illustration}{figures/oversampling_illustration.png}{Ilustrasi \textit{Oversampling} \cite{he2009imbalanced}}
+% }
 
-% Figure 7: CDC (Custom placement - forces exact position)
-\newcommand{\figCDC}{%
-\begin{figure}[H]
-  \centering
-  \captionsetup{margin=0.1\columnwidth, font=small}
-  \includegraphics[width=\columnwidth]{figures/cdc.png}
-  \caption{Cara Kerja Operasi \textit{Central Difference Convolution}(CDC) \cite{yu2020cdc}}
-  \label{fig:cdc}
-\end{figure}%
-}
+% % Figure 6: Oversampling Illustration
+% \newcommand{\figSpectralFreq}{%
+% \stdFigure{fig:spectral_freq}{figures/spektral_frekuensi.png}{Visualisasi 2D-FFT}
+% }
 
-% Figure 8: Full Architecture Diagram
-\newcommand{\figFullArchitecture}{%
-\stdFigureWide{fig:full_architecture}{figures/full_architecture.jpeg}{Diagram arsitektur lengkap model NaFlexViT-CDC-FAS yang menunjukkan aliran data dan komponen-komponen utama sistem klasifikasi \textit{face spoofing} multikelas.}
-}
+% % Figure 7: ViT Architecture
+% \newcommand{\figViTArchitecture}{%
+% \stdFigure{fig:vit_architecture}{figures/vit_architecture.png}{Ilustrasi Arsitektur Model \textit{Baseline Vision Transformer} (ViT) \cite{dosovitskiy2020image}}
+% }
 
-% Figure 9: Anchor Image Grad-CAM
-\newcommand{\figAnchorImage}{%
-\stdFigure{fig:anchor-image}{figures/anchor_image_test016.png}{Visualisasi \textit{attention map} Grad-CAM dari keluaran \textit{backbone} pada sampel citra serangan topeng (a). Pada model NaFlexViT \textit{baseline} (b), fokus atensi tersebar secara luas pada area wajah tanpa menyoroti anomali yang spesifik. Dengan penambahan \textit{Feature Pyramid Network} (FPN) (c), atensi model terpusat secara tajam pada batas-batas fisik topeng, khususnya di sekitar lubang potongan mata dan tepi wajah luar. Perbandingan ini mengindikasikan bahwa integrasi FPN membantu model secara efektif untuk melokalisasi bentuk anomali spasial dan mendeteksi artefak \textit{spoofing}.}
-}
+% % Figure 7: CDC (Custom placement - forces exact position)
+% \newcommand{\figCDC}{%
+% \begin{figure}[H]
+%   \centering
+%   \captionsetup{margin=0.1\columnwidth, font=small}
+%   \includegraphics[width=\columnwidth]{figures/cdc.png}
+%   \caption{Cara Kerja Operasi \textit{Central Difference Convolution}(CDC) \cite{yu2020cdc}}
+%   \label{fig:cdc}
+% \end{figure}%
+% }
 
-% Figure 10: Training Curves (Ablation Study)
-\newcommand{\figTrainingCurves}{%
-\stdFigureWide{fig:training_curves}{figures/ablation_curves.png}{Kurva \textit{validation loss} (kiri) dan \textit{validation} F1-Macro (kanan) selama pelatihan untuk tiga varian ablasi: A (\textit{baseline}), B (+ FPN), dan C (+ CDC). Garis putus-putus vertikal pada \textit{epoch} ke-5 menandai transisi dari fase \textit{freeze} ke \textit{unfreeze}. Data pelatihan Varian D tidak tersedia.}
-}
+% % Figure 8: Full Architecture Diagram
+% \newcommand{\figFullArchitecture}{%
+% \stdFigureWide{fig:full_architecture}{figures/full_architecture.jpeg}{Diagram arsitektur lengkap model NaFlexViT-CDC-FAS yang menunjukkan aliran data dan komponen-komponen utama sistem klasifikasi \textit{face spoofing} multikelas.}
+% }
 
-% Figure 11: 5-Stage Architecture Pipeline
-\newcommand{\figArchitecturePipeline}{%
-\stdFigureWide{fig:architecture_pipeline}{figures/naflexvit_cdc_fas_architecture.png}{Arsitektur lengkap Varian D (NaFlexViT + FPN + CDC), terdiri atas: (1) \textit{encoder} NaFlexViT berbasis SigLIP, (2) kompresi spasial dan \textit{reshaping}, (3) \textit{Feature Pyramid Network} (FPN), (4) \textit{CDC refinement} dengan blok \textit{Squeeze-Excitation}, serta (5) \textit{GeM pooling} dan \textit{dual classification head}. Varian lain merupakan subset: Varian A menggunakan komponen (1)--(2)--(5), Varian B menambahkan (3), dan Varian C menambahkan (4).}
-}
+% % Figure 9: Anchor Image Grad-CAM
+% \newcommand{\figAnchorImage}{%
+% \stdFigure{fig:anchor-image}{figures/anchor_image_test016.png}{Visualisasi \textit{attention map} Grad-CAM dari keluaran \textit{backbone} pada sampel citra serangan topeng (a). Pada model NaFlexViT \textit{baseline} (b), fokus atensi tersebar secara luas pada area wajah tanpa menyoroti anomali yang spesifik. Dengan penambahan \textit{Feature Pyramid Network} (FPN) (c), atensi model terpusat secara tajam pada batas-batas fisik topeng, khususnya di sekitar lubang potongan mata dan tepi wajah luar. Perbandingan ini mengindikasikan bahwa integrasi FPN membantu model secara efektif untuk melokalisasi bentuk anomali spasial dan mendeteksi artefak \textit{spoofing}.}
+% }
 
-% Figure 12: Grad-CAM Main Evaluation
-\newcommand{\figGradCAMMainEvaluation}{%
-\stdFigureWide{fig:gradcam_main_evaluation}{figures/gradcam_main_evaluation.png}{Visualisasi Grad-CAM pada \textit{layer} \texttt{encoder.norm} (\textit{LayerNorm} terakhir \textit{backbone} NaFlexViT) untuk keempat varian ablasi pada dua sampel data uji: test\_099 (\textit{fake\_mask}, baris atas) dan test\_001 (\textit{fake\_screen}, baris bawah). \textit{Layer} target identik secara arsitektural di seluruh varian; perbedaan \textit{heatmap} mencerminkan efek \textit{fine-tuning} oleh arsitektur \textit{downstream} masing-masing melalui mekanisme \textit{gradual unfreeze}. Varian B (FPN) menghasilkan atensi yang lebih terlokalisasi pada area anomali dibandingkan \textit{baseline}, sedangkan Varian C (CDC) menunjukkan pola atensi yang paling tersebar.}
-}
-% Figure 13: Error Analysis
-\newcommand{\figErrorAnalysis}{%
-\stdFigure{fig:error_analysis}{figures/error_analysis_test075_test207.png}{Dua sampel data uji (test\_075 dan test\_207) yang menghasilkan prediksi berbeda antara Varian B (FPN) dan Varian D (FPN+CDC). Pada kedua sampel, Varian B memprediksi \textit{fake\_printed} sedangkan Varian D memprediksi \textit{realperson}. Label \textit{ground truth} kompetisi mencatat keduanya sebagai \textit{realperson}, namun inspeksi visual menunjukkan adanya karakteristik yang konsisten dengan serangan cetak. \textit{Confidence} dan kelas prediksi ditampilkan pada masing-masing panel.}
-}
+% % Figure 10: Training Curves (Ablation Study)
+% \newcommand{\figTrainingCurves}{%
+% \stdFigureWide{fig:training_curves}{figures/ablation_curves.png}{Kurva \textit{validation loss} (kiri) dan \textit{validation} F1-Macro (kanan) selama pelatihan untuk tiga varian ablasi: A (\textit{baseline}), B (+ FPN), dan C (+ CDC). Garis putus-putus vertikal pada \textit{epoch} ke-5 menandai transisi dari fase \textit{freeze} ke \textit{unfreeze}. Data pelatihan Varian D tidak tersedia.}
+% }
+
+% % Figure 11: 5-Stage Architecture Pipeline
+% \newcommand{\figArchitecturePipeline}{%
+% \stdFigureWide{fig:architecture_pipeline}{figures/naflexvit_cdc_fas_architecture.png}{Arsitektur lengkap Varian D (NaFlexViT + FPN + CDC), terdiri atas: (1) \textit{encoder} NaFlexViT berbasis SigLIP, (2) kompresi spasial dan \textit{reshaping}, (3) \textit{Feature Pyramid Network} (FPN), (4) \textit{CDC refinement} dengan blok \textit{Squeeze-Excitation}, serta (5) \textit{GeM pooling} dan \textit{dual classification head}. Varian lain merupakan subset: Varian A menggunakan komponen (1)--(2)--(5), Varian B menambahkan (3), dan Varian C menambahkan (4).}
+% }
+
+% % Figure 12: Grad-CAM Main Evaluation
+% \newcommand{\figGradCAMMainEvaluation}{%
+% \stdFigureWide{fig:gradcam_main_evaluation}{figures/gradcam_main_evaluation.png}{Visualisasi Grad-CAM pada \textit{layer} \texttt{encoder.norm} (\textit{LayerNorm} terakhir \textit{backbone} NaFlexViT) untuk keempat varian ablasi pada dua sampel data uji: test\_099 (\textit{fake\_mask}, baris atas) dan test\_001 (\textit{fake\_screen}, baris bawah). \textit{Layer} target identik secara arsitektural di seluruh varian; perbedaan \textit{heatmap} mencerminkan efek \textit{fine-tuning} oleh arsitektur \textit{downstream} masing-masing melalui mekanisme \textit{gradual unfreeze}. Varian B (FPN) menghasilkan atensi yang lebih terlokalisasi pada area anomali dibandingkan \textit{baseline}, sedangkan Varian C (CDC) menunjukkan pola atensi yang paling tersebar.}
+% }
+% % Figure 13: Error Analysis
+% \newcommand{\figErrorAnalysis}{%
+% \stdFigure{fig:error_analysis}{figures/error_analysis_test075_test207.png}{Dua sampel data uji (test\_075 dan test\_207) yang menghasilkan prediksi berbeda antara Varian B (FPN) dan Varian D (FPN+CDC). Pada kedua sampel, Varian B memprediksi \textit{fake\_printed} sedangkan Varian D memprediksi \textit{realperson}. Label \textit{ground truth} kompetisi mencatat keduanya sebagai \textit{realperson}, namun inspeksi visual menunjukkan adanya karakteristik yang konsisten dengan serangan cetak. \textit{Confidence} dan kelas prediksi ditampilkan pada masing-masing panel.}
+% }
