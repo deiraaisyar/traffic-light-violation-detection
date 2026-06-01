@@ -1,3 +1,7 @@
 \begin{abstract}
-This is a placeholder abstract. Replace this text with a concise summary of the research background, method, main findings, and conclusion.
+This paper presents a vision-based traffic signal violation detection system designed for Simpang Wirosaban, a busy intersection in Yogyakarta, Indonesia, that operates entirely on footage from an existing fixed CCTV camera. The proposed pipeline combines a three-stage image enhancement module consisting of gamma correction, Contrast Limited Adaptive Histogram Equalization (CLAHE) on the LAB luminance channel, and unsharp masking; YOLO11m for per-frame vehicle detection within a polygon-constrained region of interest; and the Simple Online and Realtime Tracking (SORT) algorithm to maintain persistent vehicle identities across frames using Kalman filtering and Hungarian-algorithm assignment. Traffic light state is classified independently using HSV color thresholding augmented by a temporal smoothing window of nine frames, which prevents single-frame noise from triggering false violation events. A vehicle is logged as a violator when its tracked centroid crosses the virtual stop line during a confirmed red-light interval. Experimental evaluation shows that the enhancement pipeline improves detection confidence and bounding box count under low-light conditions. The results demonstrate that repurposing existing CCTV infrastructure with a carefully engineered computer vision pipeline is a practical and cost-effective path toward automated traffic enforcement without additional hardware investment.
 \end{abstract}
+
+\begin{IEEEkeywords}
+traffic signal violation detection, YOLO11, multi-object tracking, SORT, HSV thresholding,
+\end{IEEEkeywords}

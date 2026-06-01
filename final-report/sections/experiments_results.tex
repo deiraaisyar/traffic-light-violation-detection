@@ -5,7 +5,7 @@
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/Comparison_enhancement.png}
-    \caption{Comparison of vehicle detection}
+    \caption{Comparison of vehicle detection.}
     \label{fig:enhancement_comp}
 \end{figure} 
 
@@ -90,11 +90,11 @@ Figure~\ref{fig:night_green_detected} demonstrates successful green-light detect
 
 \begin{table}[ht]
 \centering
-\caption{Qualitative Evaluation of Traffic Light Recognition}
+\caption{Qualitative evaluation of traffic light recognition}
 \label{tab:tls_results}
 \begin{tabular}{ccc}
 \hline
-Condition & Traffic Light State & Detection Result \\
+Condition & Traffic light state & Detection result \\
 \hline
 Daytime & Red & Detected \\
 Daytime & Yellow & Missed \\
@@ -109,6 +109,6 @@ Nighttime & Green & Detected \\
 
 The experimental observations indicate that nighttime conditions are generally more favorable for HSV-based traffic light recognition. The reduced influence of ambient illumination allows the emitted light from the signal lamp to dominate the ROI, thereby increasing color separability and reducing classification ambiguity. Most observed failures occurred during daytime operation and were primarily caused by unfavorable camera geometry, low signal occupancy within the ROI, and illumination-induced color distortion rather than limitations of the classification algorithm itself.
 
-\subsection{Error Analysis}
-This study successfully developed a real-time traffic signal violation detection system using YOLOv11, SORT, and HSV-based traffic light detection. The system was able to detect and track vehicles within the defined ROI, recognize red and green traffic light signals, and automatically count vehicles that violated the red light. The ROI also helped focus the monitoring area and reduce unnecessary detections. Overall, the system showed good performance during daytime conditions. However, further improvements are needed to ensure reliable performance in nighttime conditions.
+\subsection{Violated Vehicle Detection}
+This study successfully developed a real-time traffic signal violation detection system using YOLO11, SORT, and HSV-based traffic light detection. The system was able to detect and track vehicles within the defined ROI, recognize red and green traffic light signals, and automatically count vehicles that violated the red light. The ROI also helped focus the monitoring area and reduce unnecessary detections. Overall, the system showed good performance during nighttime conditions (Figure \ref{fig:violation_ex}). However, further improvements are needed to ensure reliable performance in daytime conditions.
 
