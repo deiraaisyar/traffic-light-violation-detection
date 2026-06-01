@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber main"] 1780289432.44875 "main.bcf" "main.bbl" "main" 1780289439.56294 0
-  "main.bcf" 1780289439.49684 108848 a484bf0637e121e005f524f4d941eda7 "pdflatex"
+["biber main"] 1780295310.37397 "main.bcf" "main.bbl" "main" 1780295315.61182 0
+  "main.bcf" 1780295315.53524 108848 a484bf0637e121e005f524f4d941eda7 "pdflatex"
   "references.bib" 1780289432.22378 4727 47ae0ab6b2a6fe7784968b82b8c7b62d ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1780289437.60234 "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" "main.pdf" "main" 1780289439.56325 0
+["pdflatex"] 1780295313.41274 "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" "main.pdf" "main" 1780295315.61235 0
   "/etc/texmf/web2c/texmf.cnf" 1769066915.60936 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" 1780287810.21662 1932 e848dfb0655723d7bdc14c0da2ee6eca ""
+  "/home/lenovo/UGM/assignment/semester_4/pkac/traffic-light-violation-detection/final-report/main.tex" 1780290336.06114 1931 6a89b245df24c424919dc31a1e7bf85f ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -111,6 +111,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
   "/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def" 1284153563 1620 fb1c32b818f2058eca187e5c41dfae77 ""
   "/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty" 1284153563 6187 b27afc771af565d3a9ff1ca7d16d0d46 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd" 1137110629 576 95c2c0baea9c719a4be29a3d4122498b ""
   "/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd" 1137110629 985 1ed784d7bfe47179f3550d2303b073f8 ""
   "/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd" 1137110629 961 15056f4a61917ceed3a44e4ac11fcc52 ""
   "/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty" 1158586182 21369 9ef165ca6df8815c92e693146a376c92 ""
@@ -127,17 +128,17 @@
   "figures/overall_process.png" 1780263735.80714 2504151 345a0acdfdfe83b4e63fc5cf79bc2fe4 ""
   "figures/violation_detection.png" 1780287163.74584 111896 6c479b7e1ccffb55f173bf27454f1b43 ""
   "figures/yolo11_arch.png" 1780287575.59748 468524 b85ac1076701052a6e27966259d29b19 ""
-  "main.aux" 1780289439.49584 7253 b983f63e972c8c6cc40b54b6f7c27d26 "pdflatex"
-  "main.bbl" 1780289433.3031 16115 8b049c6cd761dccd7ee806507adb0a04 "biber main"
-  "main.run.xml" 1780289439.49839 2402 7c866ed2192e71c57464ed4279aadefa "pdflatex"
-  "main.tex" 1780287810.21662 1932 e848dfb0655723d7bdc14c0da2ee6eca ""
+  "main.aux" 1780295315.53224 7537 09640a265485345f82abfe7c4093ae8f "pdflatex"
+  "main.bbl" 1780295311.50856 16115 8b049c6cd761dccd7ee806507adb0a04 "biber main"
+  "main.run.xml" 1780295315.5372 2402 7c866ed2192e71c57464ed4279aadefa "pdflatex"
+  "main.tex" 1780290336.06114 1931 6a89b245df24c424919dc31a1e7bf85f ""
   "references.bib" 1780289432.22378 4727 47ae0ab6b2a6fe7784968b82b8c7b62d ""
   "sections/abstract.tex" 1779023805.21945 171 ab4290a28ee94e10ae5c560078a2f316 ""
-  "sections/conclusion.tex" 1779023805.21995 145 b6e435326cbe9361d76ac123d4c4ee89 ""
-  "sections/experiments_results.tex" 1780265697.46502 513 9bfd32e26343c69d7682ee5751bf46a1 ""
-  "sections/introduction.tex" 1780264232.63839 5754 bdfb6bcb92da0c17df9cbb5fac604e17 ""
+  "sections/conclusion.tex" 1780290554.2508 730 cca820c5a663860bcb91aa541d9e6e51 ""
+  "sections/experiments_results.tex" 1780295308.5713 165 383059c66ee37304ab924a826e2254c9 ""
+  "sections/introduction.tex" 1780290324.09117 5753 f279051df55a3ff2f6840efbc0bc08b3 ""
   "sections/literature_review.tex" 1780289410.75654 7736 1e8f52c13847df481dc3a1987a0ff602 ""
-  "sections/methodology.tex" 1780289371.9894 11534 a6742126bef71c39ec05990df8c244f1 ""
+  "sections/methodology.tex" 1780295102.00509 15566 846feb0f7f19771042ef5a08103c07cd ""
   "tables.tex" 1779076053.95218 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "main.aux"

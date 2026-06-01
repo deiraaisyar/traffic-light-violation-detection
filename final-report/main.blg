@@ -1,18 +1,18 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'main.blg'
-[73] biber:340> INFO - === Mon Jun  1, 2026, 11:50:33
-[85] Biber.pm:419> INFO - Reading 'main.bcf'
-[129] Biber.pm:979> INFO - Found 12 citekeys in bib section 0
-[139] Biber.pm:4419> INFO - Processing section 0
-[148] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
-[149] bibtex.pm:1713> INFO - LaTeX decoding ...
-[158] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[249] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[249] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[249] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[249] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[258] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[261] bbl.pm:763> INFO - Output to main.bbl
-[262] Biber.pm:131> WARN - Duplicate entry key: 'ong2024' in file 'references.bib', skipping ...
-[262] Biber.pm:131> WARN - Duplicate entry key: 'tomas2024' in file 'references.bib', skipping ...
-[262] Biber.pm:133> INFO - WARNINGS: 2
+[85] biber:340> INFO - === Mon Jun  1, 2026, 13:28:31
+[108] Biber.pm:419> INFO - Reading 'main.bcf'
+[164] Biber.pm:979> INFO - Found 12 citekeys in bib section 0
+[178] Biber.pm:4419> INFO - Processing section 0
+[189] Biber.pm:4610> INFO - Looking for bibtex file 'references.bib' for section 0
+[190] bibtex.pm:1713> INFO - LaTeX decoding ...
+[199] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[276] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[276] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[276] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[277] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[285] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[289] bbl.pm:763> INFO - Output to main.bbl
+[289] Biber.pm:131> WARN - Duplicate entry key: 'ong2024' in file 'references.bib', skipping ...
+[289] Biber.pm:131> WARN - Duplicate entry key: 'tomas2024' in file 'references.bib', skipping ...
+[289] Biber.pm:133> INFO - WARNINGS: 2

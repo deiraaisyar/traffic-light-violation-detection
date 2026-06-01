@@ -47,7 +47,7 @@ I_{sharp} = (1 + \alpha) \cdot I - \alpha \cdot G_\sigma(I)
 \figUnsharp
 
 \subsection{Vehicle Detection Using YOLO11}
-Vehicle detection is performed using YOLO11m, a medium-sized variant of the YOLO11 architecture provided by Ultralytics. The model is loaded via the \texttt{ultralytics} library and configured with a confidence threshold of 0.35 and an IoU threshold of 0.4. Detection is restricted to five COCO class indices corresponding to vehicle categories: bicycle (1), car (2), motorcycle (3), bus (5), and truck (7).
+Vehicle detection is performed using YOLO11m, a medium-sized variant of the YOLO11 architecture provided by Ultralytics. The model is loaded via the \texttt{ultralytics} library and configured with a confidence threshold of 0.35 and an IoU threshold of 0.4. Detection is restricted to five COCO class indices corresponding to vehicle categories: bicycle (1), car (2), motorcycle (3), bus (5), and truck (7). Then, all of the classes are grouped into one class known as vehcile.
 
 For each frame, the model performs inference on the enhanced frame and returns bounding boxes in \texttt{xyxy} format along with their confidence scores. Detections whose centroid falls outside the detection polygon are discarded using \texttt{cv2.pointPolygonTest} prior to being passed to the tracker. A secondary Non-Maximum Suppression (NMS) step is applied post-inference with an IoU threshold of 0.5 to suppress redundant overlapping boxes that may arise from adjacent detections of the same vehicle.
 
@@ -56,8 +56,33 @@ At each frame, every active tracker predicts its next state via the Kalman filte
 
 A tracker is only included in the output if it has been matched for at least \texttt{min\_hits = 2} consecutive frames, which suppresses short-lived false detections. A tracker is deleted if it has not been matched for more than \texttt{max\_age = 30} frames. Each confirmed tracker is assigned a globally unique integer identity that persists across frames, forming the trajectory used by the violation logic module.
 
-\subsection{Traffic Light Color Classifier Using HSV thresholding}
-Write the detection and tracking method here.
+\subsection{Traffic Light Color Classifier Using HSV Thresholding}
+
+Traffic light state recognition is implemented as a dedicated classification module that operates independently from the vehicle detection pipeline, ensuring that image enhancement applied to YOLO11 input does not affect the color-sensitive classification process. The classifier receives the original unmodified frame at each timestep and returns a stable state label from the set \{\texttt{RED}, \texttt{YELLOW}, \texttt{GREEN}, \texttt{OFF}\}.
+
+A fixed rectangular Region of Interest (ROI) of size $30 \times 70$ pixels is defined at position $(1800, 330)$ on the frame, cropped to isolate the traffic light lamp area on the center pole. The cropped ROI is first smoothed using a $5 \times 5$ Gaussian blur to suppress high-frequency noise, then converted from BGR to HSV color space. Three binary masks are computed by thresholding the HSV image against predefined color ranges. Red is represented by two disjoint hue intervals to account for the circular nature of the hue channel in OpenCV, where red wraps around both ends of the $[0, 179]$ range:
+
+\begin{equation}
+M_{red} = M_{[0,10]} \cup M_{[165,179]}
+\end{equation}
+
+\noindent with saturation and value lower bounds of 120 and 80 respectively. Yellow is thresholded over $H \in [10, 35]$ and green over $H \in [36, 95]$, both with saturation lower bound of 100 and 60 respectively. Each mask is subsequently cleaned using morphological opening with a $3 \times 3$ kernel to remove isolated noise pixels. The dominant color is determined by comparing non-zero pixel counts across the three masks, with a minimum pixel threshold of 30 to reject weak responses:
+
+\begin{equation}
+\text{state} =
+\begin{cases}
+\texttt{RED}    & \text{if } p_r > \theta \text{ and } p_r > p_y \text{ and } p_r > p_g \\
+\texttt{YELLOW} & \text{if } p_y > \theta \text{ and } p_y > p_r \text{ and } p_y > p_g \\
+\texttt{GREEN}  & \text{if } p_g > \theta \text{ and } p_g > p_r \text{ and } p_g > p_y \\
+\texttt{OFF}    & \text{otherwise}
+\end{cases}
+\end{equation}
+
+\noindent where $p_r$, $p_y$, $p_g$ denote the non-zero pixel counts of the red, yellow, and green masks respectively, and $\theta = 30$ is the pixel threshold.
+
+Since the ROI-based thresholding may fail to detect red under daytime illumination conditions, where overexposure and low color saturation reduce the effectiveness of per-pixel masking, a fallback mechanism based on mean HSV sampling is incorporated. When the ROI classifier does not return \texttt{RED}, the system samples a $10 \times 10$ pixel patch centered at a fixed point $(1827, 348)$ that corresponds directly to the red lamp position on the traffic signal pole. The mean HSV value of this patch is computed after Gaussian smoothing and compared against an empirically determined range of $H \in [100, 130]$, $S \in [80, 160]$, $V \in [70, 140]$, which was derived from annotation measurements of the red lamp under daytime conditions at Simpang Wirosaban. If the mean HSV falls within this range, the state is overridden to \texttt{RED} regardless of the ROI result.
+
+To suppress frame-to-frame flickering caused by transient misclassifications, a temporal smoothing mechanism is applied using a sliding window of 9 frames. A state transition is confirmed only when a given label appears in at least 6 of the 9 most recent frames (\texttt{min\_confirm\_frames = 6}), after which the stable state is updated and held until a new state accumulates sufficient votes. This hysteresis-like behavior prevents the violation logic from reacting to single-frame noise in the traffic light classification output.
 
 \subsection{Traffic Signal Violation Logic}
 A violation is recorded when a tracked vehicle crosses the virtual stop line while the traffic light state is \texttt{RED} (Figure \ref{fig:violation_detection}). The stop line is defined as a segment connecting two vertices of the detection polygon, specifically from coordinate $(916, 762)$ to $(1260, 586)$.
@@ -79,3 +104,6 @@ To handle tracker ID reassignment caused by occlusion or missed detections, a gh
 
 \subsection{Violated Vehicle Counting}
 Each vehicle identity is permitted to register at most one violation regardless of how many times it crosses the stop line during a session. This constraint is enforced by checking membership in \texttt{violation\_ids} prior to incrementing the counter. The total violation count is maintained as a running integer (\texttt{violation\_count}) and is rendered directly onto each output frame alongside the current traffic light state and timestamp.
+
+\subsection{Experimental Setup}
+The experiments were conducted using input videos with a resolution of 1920 $\times$ 1200 pixels to preserve fine-grained details of vehicle motion and traffic light status. All video processing and model inference were executed on a workstation equipped with an NVIDIA Tesla T4 GPU, which provided hardware acceleration for YOLO11 detection and SORT-based tracking during the evaluation stage.

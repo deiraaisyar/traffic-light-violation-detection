@@ -299,6 +299,11 @@ INPUT ./figures/enhance_3_unsharp.png
 INPUT ./figures/enhance_3_unsharp.png
 INPUT ./figures/enhance_3_unsharp.png
 INPUT ./figures/enhance_3_unsharp.png
+INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm
 INPUT ./figures/violation_detection.png
 INPUT ./figures/violation_detection.png
 INPUT ./figures/violation_detection.png
